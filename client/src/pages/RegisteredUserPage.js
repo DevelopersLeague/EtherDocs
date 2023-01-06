@@ -19,10 +19,10 @@ import Card from '../components/Card';
 import styles from '../styles/Home.module.css'
 import data from '../WalletConnectedData';
 
-const WalletConnectedPage = () => {
+const RegisteredUserPage = () => {
 
     return <div>
-        <main className={styles.main}>            
+        <main className={styles.main}>
             <Container py={{ base: "4", md: "12" }} maxW={"7xl"}>
                 <HStack spacing={2}>
                     <SkeletonCircle size="4" />
@@ -32,7 +32,7 @@ const WalletConnectedPage = () => {
                 </HStack>
 
                 <Divider marginTop="4" />
-                
+
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} py={8}>
                     {data.map((fund) => {
                         return (
@@ -55,4 +55,4 @@ const WalletConnectedPage = () => {
     </div>;
 };
 
-export default WalletConnectedPage;
+export default RegisteredUserPage;
