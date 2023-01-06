@@ -6,6 +6,8 @@ import LandingPage from './pages/LandingPage';
 import Navbar from './components/Navbar';
 import RegisteredUserPage from './pages/RegisteredUserPage';
 import VerifyForm from './pages/VerifyForm';
+import StudentForm from './pages/StudentForm';
+import IssuerForm from './pages/IssuerForm';
 import NotRegisteredUserPage from './pages/NotRegisteredUserPage';
 function App() {
   return (
@@ -21,12 +23,15 @@ function App() {
             {/* choice b/w issuer and student */}
             <Route exact path='/is-registered' element={<RegisteredUserPage />}></Route>
 
-            {/* verifier form */}
+            {/* displays 3 btns: register as issuer, student, verifier */}
             <Route exact path='/is-not-registered' element={<NotRegisteredUserPage />}></Route>
+
+            {/* verify form, containing fields: Issued by, Issued to, UUID and file upload */}
             <Route exact path='/is-not-registered/verify' element={<VerifyForm />}></Route>
 
 
-            {/* <Route path='Fundraiser/:id' element={<FundDetails />}></Route> */}
+            <Route exact path='/is-not-registered/student' element={<StudentForm />}></Route>
+            <Route exact path='/is-not-registered/issuer' element={<IssuerForm />}></Route>
           </Routes>
         </Router>
 

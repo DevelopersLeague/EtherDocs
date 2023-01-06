@@ -23,12 +23,12 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import FileUpload from '../components/FileUpload';
 
-const VerifyForm = () => {
+const IssuerForm = () => {
 
-    const [error, setError] = useState("");
-    const { handleSubmit, register, control, formState: { isSubmitting, errors } } = useForm({
+    const { handleSubmit, register, formState: { isSubmitting, errors } } = useForm({
         mode: "onChange"
     })
+    const [error, setError] = useState("");
 
     async function onSubmit(data) {
         console.log(
@@ -50,7 +50,7 @@ const VerifyForm = () => {
                     </Text>
 
                     <Stack>
-                        <Heading fontSize={"4xl"}>Verify a document 📃</Heading>
+                        <Heading fontSize={"4xl"}>Register as a issuer 🏫</Heading>
                     </Stack>
 
                     <Box
@@ -63,41 +63,14 @@ const VerifyForm = () => {
                             <Stack spacing={4}>
 
 
-                                <FormControl id="Issued_by">
-                                    <FormLabel>Issued by</FormLabel>
+                                <FormControl id="issuer_name">
+                                    <FormLabel>Name</FormLabel>
                                     <Input
-                                        {...register("Issued_by", { required: true })}
+                                        {...register("issuer_name", { required: true })}
                                         isDisabled={isSubmitting}
                                     />
                                 </FormControl>
 
-                                <FormControl id="Issued_to">
-                                    <FormLabel>Issued to</FormLabel>
-                                    <Input
-                                        {...register("Issued_to", { required: true })}
-                                        isDisabled={isSubmitting}
-                                    />
-                                </FormControl>
-
-                                <FormControl id="UUID">
-                                    <FormLabel>UUID</FormLabel>
-                                    <Input
-                                        {...register("UUID", { required: true })}
-                                        isDisabled={isSubmitting}
-                                    />
-                                </FormControl>
-
-                                <FormControl id="target">
-                                    <FormLabel>File Upload</FormLabel>
-                                    <FileUpload name="PDF format"
-                                        acceptedFileTypes="application/pdf"
-                                        isRequired={true}
-                                        placeholder="file_name.pdf"
-                                        control={control}>
-                                        Only PDF format is acceptable
-                                    </FileUpload>
-
-                                </FormControl>
 
                                 {error ? (
                                     <Alert status="error">
@@ -106,7 +79,7 @@ const VerifyForm = () => {
                                     </Alert>
                                 ) : null}
 
-                                {errors.minimumContribution || errors.name || errors.description || errors.UUID || errors.target ? (
+                                {errors.issuer_name ? (
                                     <Alert status="error">
                                         <AlertIcon />
                                         <AlertDescription mr={2}>
@@ -136,7 +109,7 @@ const VerifyForm = () => {
                                         <Alert status="warning">
                                             <AlertIcon />
                                             <AlertDescription mr={2}>
-                                                Please Connect Your Wallet to Register
+                                                Please Connect Your Wallet First to Register
                                             </AlertDescription>
                                         </Alert>
                                     </Stack>
@@ -150,4 +123,4 @@ const VerifyForm = () => {
     )
 }
 
-export default VerifyForm
+export default IssuerForm
