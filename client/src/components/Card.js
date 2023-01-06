@@ -7,11 +7,11 @@ import {
     Img,
 } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
-const Card = ({ name, desc, imageURL, id }) => {
+const Card = ({ name, desc, imageURL, id, path }) => {
 
     return (
         // pls add a Navlink component
-        <Link to={`/isRegistered/${id}`}>
+        <Link to={`/${path}/${id}`}>
             <Box
                 bg={useColorModeValue("white", "gray.800")}
                 maxW={{ md: "sm" }}

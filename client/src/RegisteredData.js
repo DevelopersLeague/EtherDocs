@@ -1,4 +1,4 @@
-const funds = [
+const options = [
     {
         id: "student",
         name: "Student",
@@ -14,4 +14,4 @@ const funds = [
     }
 ]
 
-export default funds;
+export default options;

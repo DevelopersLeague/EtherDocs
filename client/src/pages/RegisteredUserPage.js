@@ -17,7 +17,7 @@ import { FcDonate, FcManager, FcFlashOn } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import styles from '../styles/Home.module.css'
-import data from '../WalletConnectedData';
+import data from '../RegisteredData';
 
 const RegisteredUserPage = () => {
 
@@ -42,6 +42,7 @@ const RegisteredUserPage = () => {
                                     desc={fund.desc}
                                     imageURL={fund.imageURL}
                                     id={fund.id}
+                                    path="is-registered"
                                     ethPrice="NA"
                                 />
                             </div>

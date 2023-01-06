@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
 import Navbar from './components/Navbar';
 import RegisteredUserPage from './pages/RegisteredUserPage';
+import VerifyForm from './pages/VerifyForm';
 import NotRegisteredUserPage from './pages/NotRegisteredUserPage';
 function App() {
   return (
@@ -16,8 +17,14 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<LandingPage />}></Route>
-            <Route exact path='/isRegistered' element={<RegisteredUserPage />}></Route>
-            <Route exact path='/isNotRegistered' element={<NotRegisteredUserPage />}></Route>
+
+            {/* choice b/w issuer and student */}
+            <Route exact path='/is-registered' element={<RegisteredUserPage />}></Route>
+
+            {/* verifier form */}
+            <Route exact path='/is-not-registered' element={<NotRegisteredUserPage />}></Route>
+            <Route exact path='/is-not-registered/verify' element={<VerifyForm />}></Route>
+
 
             {/* <Route path='Fundraiser/:id' element={<FundDetails />}></Route> */}
           </Routes>

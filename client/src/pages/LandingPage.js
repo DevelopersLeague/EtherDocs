@@ -34,7 +34,7 @@ const LandingPage = () => {
                 </Heading>
 
                 {/* Navlink will come here */}
-                <Link to="/isRegistered">
+                <Link to="/is-registered">
                     <Button
                         display={{ sm: "inline-flex" }}
                         fontSize={"md"}
@@ -50,7 +50,7 @@ const LandingPage = () => {
                 </Link>
             </Container>
 
-            
+
             <Container py={{ base: "4", md: "12" }} maxW={"7xl"} id="howitworks">
                 <HStack spacing={2}>
                     <SkeletonCircle size="4" />
