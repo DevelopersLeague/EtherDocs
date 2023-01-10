@@ -1,32 +1,18 @@
 import React from 'react'
 import {
   Heading,
-  useBreakpointValue,
-  useColorModeValue,
-  Text,
-  Button,
-  Flex,
   Container,
-  SimpleGrid,
   Box,
-  Spacer,
   Table,
   Thead,
   Tbody,
-  Tooltip,
   Tr,
   Th,
   Td,
-  TableCaption,
-  Skeleton,
-  Alert,
-  AlertIcon,
-  AlertDescription,
   HStack,
-  Stack,
-  Link,
   SkeletonCircle,
   Divider,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import styles from '../styles/Home.module.css'
 const StudentIsRegistered = () => {
@@ -44,7 +30,9 @@ const StudentIsRegistered = () => {
 
         <Box overflowX="auto">
           <Table>
-            <Thead>
+            <Thead bg={
+              useColorModeValue("teal.200", "teal.700")
+            }>
               <Tr>
                 <Th>ID</Th>
                 <Th w="30%">Name </Th>
@@ -55,7 +43,10 @@ const StudentIsRegistered = () => {
 
               </Tr>
             </Thead>
-            <Tbody>
+            <Tbody bg={
+              useColorModeValue("teal.100", "teal.700")
+            }
+              opacity={"0.9"}>
               <Tr>
                 <Td>1</Td>
                 <Td>Sem-6 Marksheet</Td>
