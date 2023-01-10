@@ -43,7 +43,7 @@ const IssuerIsRegistered = () => {
                             maxW={"3xl"}
                             size={"lg"}
                         >
-                            You have Issued {"10"} Certificates
+                            You have Issued {"3"} Certificates
                         </Heading>
                     </Box>
                     <Spacer />
@@ -78,6 +78,8 @@ const IssuerIsRegistered = () => {
                                 <Th>ID</Th>
                                 <Th w="30%">Name </Th>
                                 <Th>Issued For </Th>
+                                <Th>Address </Th>
+                                <Th>Certificate link </Th>
                                 
 
                             </Tr>
@@ -89,19 +91,40 @@ const IssuerIsRegistered = () => {
                             <Tr>
                                 <Td>1</Td>
                                 <Td>Sem-6 Marksheet</Td>
-                                <Td>Thadomal Shahani Engineering College</Td>
+                                <Td>Shyren More</Td>
+                                <Td>0xffedheje</Td>
+                                <Td>
+                                    <Link to="https://">
+                                        https://
+                                    </Link>
+                                    
+                                </Td>
                                 {/* <Td>0xffeueueehejej</Td> */}
                             </Tr>
                             <Tr>
                                 <Td>2</Td>
                                 <Td>HSC Marksheet</Td>
-                                <Td>SVP College of Science and Commerce</Td>
+                                <Td>Aniket More</Td>
+                                <Td>0xffedheje</Td>
+                                <Td>
+                                    <Link to="https://">
+                                        https://
+                                    </Link>
+
+                                </Td>
                                 
                             </Tr>
                             <Tr>
                                 <Td>3</Td>
                                 <Td>SSC Marksheet</Td>
-                                <Td>Shantinagar HighSchool</Td>
+                                <Td>Chirag M</Td>
+                                <Td>0xffedheje</Td>
+                                <Td>
+                                    <Link to="https://">
+                                        https://
+                                    </Link>
+
+                                </Td>
                                 
                             </Tr>
                         </Tbody>

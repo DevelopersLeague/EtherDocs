@@ -14,6 +14,7 @@ import {
   Divider,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
 import styles from '../styles/Home.module.css'
 const StudentIsRegistered = () => {
   return (
@@ -40,7 +41,7 @@ const StudentIsRegistered = () => {
                 <Th maxW="12%" isTruncated>
                   Wallet Address
                 </Th>
-
+                <Th>Link to certificate </Th>
               </Tr>
             </Thead>
             <Tbody bg={
@@ -52,18 +53,36 @@ const StudentIsRegistered = () => {
                 <Td>Sem-6 Marksheet</Td>
                 <Td>Thadomal Shahani Engineering College</Td>
                 <Td>0xffeueueehejej</Td>
+                <Td>
+                  <Link to="https://">
+                    https://
+                  </Link>
+
+                </Td>
               </Tr>
               <Tr>
                 <Td>2</Td>
                 <Td>HSC Marksheet</Td>
                 <Td>SVP College of Science and Commerce</Td>
                 <Td>0xffeyyeyeyeye</Td>
+                <Td>
+                  <Link to="https://">
+                    https://
+                  </Link>
+
+                </Td>
               </Tr>
               <Tr>
                 <Td>3</Td>
                 <Td>SSC Marksheet</Td>
                 <Td>Shantinagar HighSchool</Td>
                 <Td>0xffeyyeyeyeye</Td>
+                <Td>
+                  <Link to="https://">
+                    https://
+                  </Link>
+
+                </Td>
               </Tr>
             </Tbody>
 
