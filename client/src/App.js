@@ -11,6 +11,7 @@ import IssuerForm from './pages/IssuerForm';
 import NotRegisteredUserPage from './pages/NotRegisteredUserPage';
 import StudentIsRegistered from './pages/StudentIsRegistered';
 import IssuerIsRegistered from './pages/IssuerIsRegistered';
+import IssueNewCertiForm from './pages/IssueNewCertiForm';
 function App() {
   return (
     <>
@@ -30,6 +31,9 @@ function App() {
 
             {/* displays list of certificates issued by Issuer to various students */}
             <Route exact path='/is-registered/issuer' element={<IssuerIsRegistered />}></Route>
+
+            {/* form for new certificate */}
+            <Route exact path='/issuer/new-certificate' element={<IssueNewCertiForm />}></Route>
 
             {/* displays 3 btns: register as issuer, student, verifier */}
             <Route exact path='/is-not-registered' element={<NotRegisteredUserPage />}></Route>
