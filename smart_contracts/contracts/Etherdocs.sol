@@ -67,7 +67,6 @@ contract Etherdocs {
         returns (address, string memory, string memory)
     {
         address addr = msg.sender;
-        // require(isRegistered(addr), "not registered on the app");
         if (!isRegistered(addr)) {
             return (addr, "NA", "NA");
         }
@@ -131,14 +130,7 @@ contract Etherdocs {
     )
         public
         view
-        returns (
-            address,
-            address,
-            string memory,
-            string memory,
-            string memory,
-            bool
-        )
+        returns (address, address, string memory, string memory, bool)
     {
         Certificate storage certificate = certificates[_uuid];
         // only user and issuer can get certificate details
@@ -151,7 +143,6 @@ contract Etherdocs {
             certificate.issuerAddr,
             certificate.userAddr,
             certificate.uuid,
-            certificate.hashValue,
             certificate.ipfsUrl,
             certificate.isValid
         );
@@ -168,8 +159,8 @@ contract Etherdocs {
             return false;
         }
         if (
-            certificate.issuerAddr != _issuerAddr &&
-            certificate.userAddr != _userAddr &&
+            certificate.issuerAddr == _issuerAddr &&
+            certificate.userAddr == _userAddr &&
             areEqual(certificate.hashValue, _hashValue)
         ) {
             return true;
@@ -177,10 +168,6 @@ contract Etherdocs {
             return false;
         }
     }
-
-    //TODO
-    //public function to get all certificates issued for a user
-    //public function to get all certificates issued by an issuer
 
     function isRegistered() public view returns (bool) {
         address _addr = msg.sender;
@@ -195,6 +182,34 @@ contract Etherdocs {
     function isIssuer() private view returns (bool) {
         address _addr = msg.sender;
         return isIssuer(_addr);
+    }
+
+    function getCertificatesIssuedFor()
+        public
+        view
+        returns (
+            address[] memory,
+            address[] memory,
+            string[] memory,
+            string[] memory,
+            bool[] memory
+        )
+    {
+        return getCertificatesIssuedFor(msg.sender);
+    }
+
+    function getCertificatesIssuedBy()
+        public
+        view
+        returns (
+            address[] memory,
+            address[] memory,
+            string[] memory,
+            string[] memory,
+            bool[] memory
+        )
+    {
+        return getCertificatesIssuedBy(msg.sender);
     }
 
     // private functions
@@ -241,6 +256,42 @@ contract Etherdocs {
         return count;
     }
 
+    function getCertificatesIssuedFor(
+        address _userAddr
+    )
+        private
+        view
+        returns (
+            address[] memory,
+            address[] memory,
+            string[] memory,
+            string[] memory,
+            bool[] memory
+        )
+    {
+        uint256 count = getIssuedForCount(_userAddr);
+        address[] memory ret_issuers = new address[](count);
+        address[] memory ret_users = new address[](count);
+        string[] memory ret_uuids = new string[](count);
+        string[] memory ret_ipfsurls = new string[](count);
+        bool[] memory ret_isvalids = new bool[](count);
+
+        uint256 index = 0;
+
+        for (uint i = 0; i < certificateUUIDs.length; i++) {
+            Certificate memory certificate = certificates[certificateUUIDs[i]];
+            if (certificate.userAddr == _userAddr) {
+                ret_issuers[index] = certificate.issuerAddr;
+                ret_users[index] = certificate.userAddr;
+                ret_uuids[index] = certificate.uuid;
+                ret_ipfsurls[index] = certificate.ipfsUrl;
+                ret_isvalids[index] = certificate.isValid;
+            }
+        }
+
+        return (ret_issuers, ret_users, ret_uuids, ret_ipfsurls, ret_isvalids);
+    }
+
     function getIssuedByCount(
         address _isserAddr
     ) private view returns (uint256) {
@@ -254,15 +305,39 @@ contract Etherdocs {
         return count;
     }
 
-    //TODO
-    //private function to get all certificates issued for a user
-    //private function to get all certificates issued by an issuer
-}
+    function getCertificatesIssuedBy(
+        address _userAddr
+    )
+        private
+        view
+        returns (
+            address[] memory,
+            address[] memory,
+            string[] memory,
+            string[] memory,
+            bool[] memory
+        )
+    {
+        uint256 count = getIssuedByCount(_userAddr);
+        address[] memory ret_issuers = new address[](count);
+        address[] memory ret_users = new address[](count);
+        string[] memory ret_uuids = new string[](count);
+        string[] memory ret_ipfsurls = new string[](count);
+        bool[] memory ret_isvalids = new bool[](count);
 
-// address issuerAddr;
-// address userAddr;
-// string uuid;
-// string hashValue;
-// string ipfsUrl;
-// bool isCreated;
-// bool isValid;
+        uint256 index = 0;
+
+        for (uint i = 0; i < certificateUUIDs.length; i++) {
+            Certificate memory certificate = certificates[certificateUUIDs[i]];
+            if (certificate.issuerAddr == _userAddr) {
+                ret_issuers[index] = certificate.issuerAddr;
+                ret_users[index] = certificate.userAddr;
+                ret_uuids[index] = certificate.uuid;
+                ret_ipfsurls[index] = certificate.ipfsUrl;
+                ret_isvalids[index] = certificate.isValid;
+            }
+        }
+
+        return (ret_issuers, ret_users, ret_uuids, ret_ipfsurls, ret_isvalids);
+    }
+}
