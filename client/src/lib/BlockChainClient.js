@@ -1,5 +1,0 @@
-//@ts-check
-
-class BlockChainClient {
-
-}
