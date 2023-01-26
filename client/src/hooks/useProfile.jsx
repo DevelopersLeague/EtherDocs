@@ -10,7 +10,6 @@ export const useProfile = () => {
 
 export function ProfileProvider({ children }) {
   const [profile, setProfile] = useState(null);
-  console.log(profile);
   return (
     <profileContext.Provider value={{ profile, setProfile }}>
       {children}
