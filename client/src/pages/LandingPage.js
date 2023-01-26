@@ -14,20 +14,10 @@ import {
 import Footer from "../components/Footer";
 import { FcApproval, FcManager, FcBusinessman } from "react-icons/fc";
 import styles from "../styles/Home.module.css";
-import { useMetamask } from "../hooks/useMetamask";
-import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const col1 = useColorModeValue("gray.800", "white");
   const alignText = useBreakpointValue({ base: "left" });
-  const { isConnected } = useMetamask();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isConnected) {
-      navigate("/connect-wallet");
-    }
-  }, [isConnected, navigate]);
 
   return (
     <div>

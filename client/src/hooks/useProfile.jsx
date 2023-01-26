@@ -10,8 +10,22 @@ export const useProfile = () => {
 
 export function ProfileProvider({ children }) {
   const [profile, setProfile] = useState(null);
+  const isRegistered = (() => {
+    if (!profile) {
+      return false;
+    } else {
+      if (profile.role === "NA") {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  })();
+  console.debug("profile state changed");
+  console.debug({ profile, isRegistered });
+
   return (
-    <profileContext.Provider value={{ profile, setProfile }}>
+    <profileContext.Provider value={{ profile, setProfile, isRegistered }}>
       {children}
     </profileContext.Provider>
   );

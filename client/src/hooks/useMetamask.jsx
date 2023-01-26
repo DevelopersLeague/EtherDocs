@@ -28,8 +28,6 @@ export const MetamaskProvider = ({ children }) => {
 
   const handleAccountsChanged = useCallback(
     async (accounts) => {
-      console.debug("accounts changed");
-      console.debug(accounts);
       if (accounts.length === 0) {
         console.log("metamask not connected");
       } else {
@@ -39,8 +37,6 @@ export const MetamaskProvider = ({ children }) => {
         );
         setClient(client);
         const profileRet = await client.getProfile();
-        console.debug("profile call");
-        console.debug(profileRet);
         setProfile(profileRet);
         setAccount(accounts[0]);
       }
@@ -65,8 +61,11 @@ export const MetamaskProvider = ({ children }) => {
     }
   }, [account]);
 
+  //deb
+  console.debug("metamask state changed");
+  console.debug({ account, isConnected });
+
   const handleChainChanged = useCallback((chainId) => {
-    console.debug("chain id changed: ", chainId);
     window.location.href = "/";
   }, []);
 

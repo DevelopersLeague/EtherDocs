@@ -33,8 +33,6 @@ const ConnectWalletPage = () => {
         >
           Click the button to connect your wallet
         </Heading>
-        {/* Navlink will come here */}
-        {/* <Link to="/is-registered"> */}
         <Button
           display={{ sm: "inline-flex" }}
           fontSize={"lg"}
