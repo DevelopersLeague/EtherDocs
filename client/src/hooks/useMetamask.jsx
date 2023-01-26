@@ -3,6 +3,11 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
+import EtherDocsClient from "../lib/EtherDocsClient";
+import Etherdocs from "../lib/Etherdocs.json";
+import { setClient } from "../lib/ClientManager";
+import config from "../config";
+import { useProfile } from "./useProfile";
 
 export const metamaskContext = React.createContext();
 
@@ -13,9 +18,7 @@ export const useMetamask = () => {
 export const MetamaskProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
-
-  console.debug("metastate from hook");
-  console.debug({ account, isConnected });
+  const { setProfile } = useProfile();
 
   useEffect(() => {
     if (!window.ethereum) {
@@ -24,16 +27,25 @@ export const MetamaskProvider = ({ children }) => {
   }, []);
 
   const handleAccountsChanged = useCallback(
-    (accounts) => {
+    async (accounts) => {
       console.debug("accounts changed");
       console.debug(accounts);
       if (accounts.length === 0) {
         console.log("metamask not connected");
       } else {
+        const client = new EtherDocsClient(
+          Etherdocs.abi,
+          config.contractAddress
+        );
+        setClient(client);
+        const profileRet = await client.getProfile();
+        console.debug("profile call");
+        console.debug(profileRet);
+        setProfile(profileRet);
         setAccount(accounts[0]);
       }
     },
-    [setAccount]
+    [setAccount, setProfile]
   );
 
   useEffect(() => {

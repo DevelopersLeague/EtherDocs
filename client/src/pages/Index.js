@@ -24,11 +24,11 @@ const Index = () => {
           config.contractAddress
         );
         setClient(client);
-        const isRegistered = await client.isRegistered()
-        if(isRegistered){
-          navigate("/is-registered")
-        }else{
-          navigate("/is-not-registered")
+        const isRegistered = await client.isRegistered();
+        if (isRegistered) {
+          navigate("/is-registered");
+        } else {
+          navigate("/is-not-registered");
         }
       } else {
         navigate("/connect-wallet");

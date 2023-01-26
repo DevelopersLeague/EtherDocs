@@ -17,7 +17,12 @@ class EtherDocsClient {
   }
 
   async getProfile() {
-    return await this.contract.connect(this.signer).getProfile();
+    const res = await this.contract.connect(this.signer).getProfile();
+    return {
+      address: res[0],
+      name: res[1],
+      role: res[2],
+    };
   }
 
   /**
