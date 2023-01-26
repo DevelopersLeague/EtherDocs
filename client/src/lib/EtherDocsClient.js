@@ -38,12 +38,137 @@ class EtherDocsClient {
     console.log("issuer registered");
   }
 
+  /**
+   * @returns {Promise<boolean>}
+   */
   async isUser() {
     return await this.contract.connect(this.signer).isUser();
   }
 
+  /**
+   * @returns {Promise<boolean>}
+   */
   async isIssuer() {
     return await this.contract.connect(this.signer).isIssuer();
+  }
+
+  /**
+   *
+   * @param {string} userAddr
+   * @param {string} uuid
+   * @param {string} hashValue
+   * @param {string} ipfsUrl
+   * @returns
+   */
+  async issueCertificate(userAddr, uuid, hashValue, ipfsUrl) {
+    try {
+      const tx = await this.contract
+        .connect(this.signer)
+        .issueCertificate(userAddr, uuid, hashValue, ipfsUrl);
+      await tx.wait();
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }
+
+  /**
+   * @param {string} uuid
+   * @returns
+   */
+  async invalidateCertificate(uuid) {
+    try {
+      const tx = await this.contract
+        .connect(this.signer)
+        .invalidateCertificate(uuid);
+      await tx.wait();
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }
+
+  /**
+   * @param {string} uuid
+   */
+  async getCertificate(uuid) {
+    try {
+      const result = await this.contract
+        .connect(this.signer)
+        .getCertificate(uuid);
+      return {
+        issuerAddr: result[0],
+        userAddr: result[1],
+        uuid: result[2],
+        ipfsUrl: result[3],
+        isValid: result[4],
+      };
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  /**
+   *
+   * @param {string} uuid
+   * @param {string} issuerAddr
+   * @param {string} userAddr
+   * @param {string} hashValue
+   * @returns
+   */
+  async verifyCertificate(uuid, issuerAddr, userAddr, hashValue) {
+    try {
+      const result = await this.contract
+        .connect(this.signer)
+        .verifyCertificate(uuid, issuerAddr, userAddr, hashValue);
+      return result;
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  async getCertificatesIssuedFor() {
+    try {
+      const [issuers, users, uuids, ipfsUrls, isValids] = await this.contract
+        .connect(this.signer)
+        .getCertificatesIssuedFor();
+      return issuers.map((issuerAddr, index) => {
+        return {
+          issuerAddr,
+          userAddr: users[index],
+          uuid: uuids[index],
+          ipfsUrl: ipfsUrls[index],
+          isValid: isValids[index],
+        };
+      });
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  async getCertificatesIssuedBy() {
+    try {
+      const [issuers, users, uuids, ipfsUrls, isValids] = await this.contract
+        .connect(this.signer)
+        .getCertificatesIssuedBy();
+      return issuers.map((issuerAddr, index) => {
+        return {
+          issuerAddr,
+          userAddr: users[index],
+          uuid: uuids[index],
+          ipfsUrl: ipfsUrls[index],
+          isValid: isValids[index],
+        };
+      });
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
   }
 }
 
