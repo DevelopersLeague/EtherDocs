@@ -19,25 +19,27 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import FileUpload from '../components/FileUpload';
-
+import { getClient } from '../lib/ClientManager'
+import { useMetamask } from '../hooks/useMetamask';
+// import { useNavigate } from 'react-router-dom';
 const StudentForm = () => {
 
     const { handleSubmit, register, formState: { isSubmitting, errors } } = useForm({
         mode: "onChange"
     })
     const [error, setError] = useState("");
+    const { isConnected } = useMetamask();
+    const navigate = useNavigate();
 
     async function onSubmit(data) {
-        console.log(
-            // data.minimumContribution,
-            // data.Issued by,
-            // data.description,
-            // data.UUID,
-            // data.target
-        );
+        console.log(data);
+        const client = getClient()
+        client.registerUser(data.student_name).then(()=>navigate('/'));
+        // console.log();
+        
     }
 
     return (
@@ -92,27 +94,27 @@ const StudentForm = () => {
                                 <Stack spacing={10}>
 
                                     {/* conditional rendering if wallet is  connected will come here */}
-                                    <Stack spacing={3}>
-                                        <Button
-                                            color={"white"}
-                                            bg={"teal.400"}
-                                            _hover={{
-                                                bg: "teal.300",
-                                            }}
-                                            onClick={
-                                                // () => wallet.connect()
-                                                console.log("Hello")
-                                            }
-                                        >
-                                            Submit{" "}
-                                        </Button>
-                                        <Alert status="warning">
+                                    {isConnected ?
+        
+                                        (<Stack spacing={3}>
+                                            <Button
+                                                color={"white"}
+                                                bg={"teal.400"}
+                                                _hover={{
+                                                    bg: "teal.300",
+                                                }}
+                                                type={'submit'}
+                                            >
+                                                Submit{" "}
+                                            </Button>
+                                            
+                                        </Stack>) :( <Alert status="warning">
                                             <AlertIcon />
                                             <AlertDescription mr={2}>
                                                 Please Connect Your Wallet First to Register
                                             </AlertDescription>
-                                        </Alert>
-                                    </Stack>
+                                        </Alert>)
+                                    }
                                 </Stack>
                             </Stack>
                         </form>

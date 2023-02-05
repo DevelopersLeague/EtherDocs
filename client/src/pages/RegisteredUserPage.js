@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import FeatureBox from '../components/FeatureBox';
 import {
     Heading,
@@ -18,8 +19,21 @@ import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import styles from '../styles/Home.module.css'
 import data from '../RegisteredData';
+import { useNavigate } from 'react-router-dom';
+import {useProfile} from '../hooks/useProfile';
 
 const RegisteredUserPage = () => {
+
+    const {profile} = useProfile();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(profile.role == "User"){
+            navigate("/is-registered/student")
+        }else{
+            navigate("/is-registered/issuer")
+        }      
+    },[])
 
     return <div>
         <main className={styles.main}>

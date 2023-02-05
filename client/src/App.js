@@ -18,6 +18,7 @@ import Index from "./pages/Index";
 import WarningInstallMetaMask from "./pages/WarningInstallMetaMask";
 
 function App() {
+  
   return (
     <>
       <ChakraProvider>
