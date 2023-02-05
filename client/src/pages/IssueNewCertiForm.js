@@ -19,9 +19,11 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import FileUpload from '../components/FileUpload';
+import { useMetamask } from '../hooks/useMetamask';
+import { getClient } from '../lib/ClientManager'
 
 const IssuerForm = () => {
 
@@ -29,15 +31,12 @@ const IssuerForm = () => {
         mode: "onChange"
     })
     const [error, setError] = useState("");
-
+    const { isConnected } = useMetamask();
+    const navigate = useNavigate();
     async function onSubmit(data) {
-        console.log(
-            // data.minimumContribution,
-            // data.Issued by,
-            // data.description,
-            // data.UUID,
-            // data.target
-        );
+        // console.log(data);
+        const client = getClient()
+        client.issueCertificate(data.new_address, "UUID1", "hash1", "ipfs_url1").catch((err)=>console.log(err));
     }
 
     return (
@@ -111,25 +110,26 @@ const IssuerForm = () => {
 
                                     {/* conditional rendering if wallet is  connected will come here */}
                                     <Stack spacing={3}>
+                                    {isConnected ? (
                                         <Button
                                             color={"white"}
                                             bg={"teal.400"}
                                             _hover={{
                                                 bg: "teal.300",
                                             }}
-                                            onClick={
-                                                // () => wallet.connect()
-                                                console.log("Hello")
-                                            }
+                                            type={'submit'}
                                         >
                                             Submit{" "}
                                         </Button>
-                                        <Alert status="warning">
-                                            <AlertIcon />
-                                            <AlertDescription mr={2}>
-                                                Please Connect Your Wallet First to Register
-                                            </AlertDescription>
-                                        </Alert>
+                                    
+                                        ) : (        
+                                            <Alert status="warning">
+                                                <AlertIcon />
+                                                <AlertDescription mr={2}>
+                                                    Please Connect Your Wallet First to Register
+                                                </AlertDescription>
+                                            </Alert>
+                                    )}
                                     </Stack>
                                 </Stack>
                             </Stack>

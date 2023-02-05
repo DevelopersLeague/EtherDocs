@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react';
 import {
     Heading,
     useBreakpointValue,
@@ -28,7 +29,24 @@ import {
 } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import styles from '../styles/Home.module.css'
+import { getClient } from '../lib/ClientManager'
+
 const IssuerIsRegistered = () => {
+    const [certiCount, setCertiCount] = useState(0)
+
+    useEffect(() => {
+        async function fn()
+        {
+            const client = getClient();
+            let res = await client.getCertificatesIssuedBy();
+            console.log(res);
+            setCertiCount(res.length)
+        }
+        fn();
+    }, [])
+    
+    
+
     return (
         <main className={styles.main}>
             <Container py={{ base: "10", md: "12" }} maxW={"7xl"}>
@@ -43,7 +61,7 @@ const IssuerIsRegistered = () => {
                             maxW={"3xl"}
                             size={"lg"}
                         >
-                            You have Issued {"3"} Certificates
+                            You have Issued {certiCount} Certificates
                         </Heading>
                     </Box>
                     <Spacer />

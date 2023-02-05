@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import {
   Heading,
   Container,
@@ -16,14 +17,27 @@ import {
 } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import styles from '../styles/Home.module.css'
+import { getClient } from '../lib/ClientManager'
 const StudentIsRegistered = () => {
+  const [certiCount, setCertiCount] = useState(3)
+
+  useEffect(() => {
+    async function fn() {
+      const client = getClient();
+      let res = await client.getCertificatesIssuedFor();
+      console.log(res);
+      setCertiCount(res.length)
+    }
+    fn();
+  }, [])
+
   return (
     <main className={styles.main}>
       <Container py={{ base: "10", md: "12" }} maxW={"7xl"}>
         <HStack spacing={2}>
           <SkeletonCircle size="4" />
           <Heading as="h4" size="lg" textAlign="left" ml="-2">
-            Found {"3"} Certificates
+            Found {certiCount} Certificates
           </Heading>
         </HStack>
 
