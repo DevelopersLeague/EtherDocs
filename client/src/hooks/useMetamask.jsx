@@ -61,10 +61,6 @@ export const MetamaskProvider = ({ children }) => {
     }
   }, [account]);
 
-  //deb
-  console.debug("metamask state changed");
-  console.debug({ account, isConnected });
-
   const handleChainChanged = useCallback((chainId) => {
     window.location.href = "/";
   }, []);

@@ -84,7 +84,7 @@ const Navbar = () => {
             spacing={6}
             display={{ base: "none", md: "flex" }}
           >
-            {profile && <p>{profile.name}</p>}
+            {profile &&  profile.name != "NA" && <p>{profile.name}</p>}
             <DarkModeSwitch />
           </Stack>
           <Flex display={{ base: "flex", md: "none" }}>
