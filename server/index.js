@@ -161,7 +161,9 @@ app.post(
     }
     const hash = await sha256(req.file.path);
     const cid = await uploadFileToIPFS(req.file.path);
+    const id = uuid()
     return res.json({
+      uuid: id,
       hash: hash,
       cid: cid,
       ifpsLink: `https://ipfs.io/ipfs/${cid}`,
