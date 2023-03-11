@@ -149,7 +149,8 @@ app.post(
 
     const hash = await sha256(req.file.path);
     await fsp.unlink(filepath);
-    res.send(`hash: ${hash}`);
+    // res.send(`hash: ${hash}`);
+    res.json({ hash });
   })
 );
 
