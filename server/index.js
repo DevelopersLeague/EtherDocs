@@ -1,4 +1,5 @@
 //@ts-check
+import cors from 'cors'
 // const express = require("express");
 import express from "express";
 import morgan from "morgan";
@@ -89,7 +90,7 @@ const upload = multer({
 //middleware
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("common"));
@@ -166,7 +167,7 @@ app.post(
       uuid: id,
       hash: hash,
       cid: cid,
-      ifpsLink: `https://ipfs.io/ipfs/${cid}`,
+      ifpsLink: `http://localhost:8080/ipfs/${cid}`,
     });
   })
 );

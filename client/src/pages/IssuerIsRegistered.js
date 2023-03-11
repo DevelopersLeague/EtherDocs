@@ -103,12 +103,12 @@ const IssuerIsRegistered = () => {
             >
               {certificates.map((cert) => {
                 return (
-                  <Tr>
+                  <Tr key={cert.uuid}>
                     <Td>{cert.uuid}</Td>
                     {/* <Td>Sem-6 Marksheet</Td> */}
                     <Td>{cert.userAddr}</Td>
                     <Td>
-                      <Link to={cert.ipfsUrl}>{cert.ipfsUrl}</Link>
+                      <a href={cert.ipfsUrl}>{cert.ipfsUrl}</a>
                     </Td>
                   </Tr>
                 );
