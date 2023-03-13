@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     Flex,
     Box,
@@ -24,19 +24,36 @@ import { useForm } from "react-hook-form";
 import FileUpload from '../components/FileUpload';
 import { useMetamask } from '../hooks/useMetamask';
 import { getClient } from '../lib/ClientManager'
-
+import axios from 'axios';
 const IssuerForm = () => {
 
     const { handleSubmit, register, control, formState: { isSubmitting, errors } } = useForm({
         mode: "onChange"
     })
+    const inputRef = useRef();
+    const [file, setFile] = useState(null);
     const [error, setError] = useState("");
     const { isConnected } = useMetamask();
     const navigate = useNavigate();
     async function onSubmit(data) {
-        // console.log(data);
+        // console.log(inputRef.current.files[0]);
+        const formData = new FormData();
+        
+        formData.append('certificate', inputRef.current.files[0]);
+
+        const response = await axios.post('http://localhost:5000/issue', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        console.log(response.data);
         const client = getClient()
-        client.issueCertificate(data.new_address, "UUID1", "hash1", "ipfs_url1").catch((err)=>console.log(err));
+        client.issueCertificate(data.new_address, response.data.uuid, response.data.hash, response.data.ifpsLink)
+            .then(() => {
+                navigate("/is-registered/issuer")
+            })
+            .catch((err) => console.log(err));
+
     }
 
     return (
@@ -83,7 +100,9 @@ const IssuerForm = () => {
                                         acceptedFileTypes="application/pdf"
                                         isRequired={true}
                                         placeholder="file_name.pdf"
-                                        control={control}>
+                                        control={control}
+                                        inputRef={inputRef}
+                                    >
                                         Only PDF format is acceptable
                                     </FileUpload>
 

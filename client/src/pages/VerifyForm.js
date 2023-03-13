@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     Flex,
     Box,
@@ -22,22 +22,34 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import FileUpload from '../components/FileUpload';
-
+import axios from 'axios';
+import { getClient } from '../lib/ClientManager'
+import { useMetamask } from '../hooks/useMetamask';
 const VerifyForm = () => {
 
     const [error, setError] = useState("");
     const { handleSubmit, register, control, formState: { isSubmitting, errors } } = useForm({
         mode: "onChange"
     })
-
+    const { isConnected } = useMetamask();
+    const inputRef = useRef();
     async function onSubmit(data) {
-        console.log(
-            // data.minimumContribution,
-            // data.Issued by,
-            // data.description,
-            // data.UUID,
-            // data.target
-        );
+        const formData = new FormData();
+
+        formData.append('certificate', inputRef.current.files[0]);
+
+        const response = await axios.post('http://localhost:5000/calculatehash', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        // console.log(response.data);
+        const client = getClient()
+        console.log("data", data);
+        client.verifyCertificate(data.UUID, data.Issued_by, data.Issued_to, response.data.hash)
+            .then((res) => {
+            console.log(res);
+        }).catch((err) => console.log(err));
     }
 
     return (
@@ -64,7 +76,7 @@ const VerifyForm = () => {
 
 
                                 <FormControl id="Issued_by">
-                                    <FormLabel>Issued by</FormLabel>
+                                    <FormLabel>Issuer Wallet Address</FormLabel>
                                     <Input
                                         {...register("Issued_by", { required: true })}
                                         isDisabled={isSubmitting}
@@ -72,7 +84,7 @@ const VerifyForm = () => {
                                 </FormControl>
 
                                 <FormControl id="Issued_to">
-                                    <FormLabel>Issued to</FormLabel>
+                                    <FormLabel>Student's Wallet Address</FormLabel>
                                     <Input
                                         {...register("Issued_to", { required: true })}
                                         isDisabled={isSubmitting}
@@ -93,7 +105,9 @@ const VerifyForm = () => {
                                         acceptedFileTypes="application/pdf"
                                         isRequired={true}
                                         placeholder="file_name.pdf"
-                                        control={control}>
+                                        control={control}
+                                        inputRef={inputRef}
+                                    >
                                         Only PDF format is acceptable
                                     </FileUpload>
 
@@ -120,25 +134,25 @@ const VerifyForm = () => {
 
                                     {/* conditional rendering if wallet is  connected will come here */}
                                     <Stack spacing={3}>
-                                        <Button
-                                            color={"white"}
-                                            bg={"teal.400"}
-                                            _hover={{
-                                                bg: "teal.300",
-                                            }}
-                                            onClick={
-                                                // () => wallet.connect()
-                                                console.log("Hello")
-                                            }
-                                        >
-                                            Submit{" "}
-                                        </Button>
-                                        <Alert status="warning">
-                                            <AlertIcon />
-                                            <AlertDescription mr={2}>
-                                                Please Connect Your Wallet to Register
-                                            </AlertDescription>
-                                        </Alert>
+                                        {isConnected ? (
+                                            <Button
+                                                color={"white"}
+                                                bg={"teal.400"}
+                                                _hover={{
+                                                    bg: "teal.300",
+                                                }}
+                                                type="submit"
+                                            >
+                                                Submit{" "}
+                                            </Button>
+                                        ) : (
+                                            <Alert status="warning">
+                                                <AlertIcon />
+                                                <AlertDescription mr={2}>
+                                                    Please Connect Your Wallet to Register
+                                                </AlertDescription>
+                                            </Alert>
+                                        )}
                                     </Stack>
                                 </Stack>
                             </Stack>
