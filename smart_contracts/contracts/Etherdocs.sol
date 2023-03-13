@@ -14,6 +14,7 @@ struct User {
 }
 
 struct Certificate {
+    string name;
     address issuerAddr;
     address userAddr;
     string uuid;
@@ -82,6 +83,7 @@ contract Etherdocs {
     }
 
     function issueCertificate(
+        string memory _name,
         address _userAddr,
         string memory _uuid,
         string memory _hashValue,
@@ -103,6 +105,7 @@ contract Etherdocs {
         Certificate storage certificate = certificates[_uuid];
 
         certificate.isCreated = true;
+        certificate.name = _name;
         certificate.issuerAddr = issuerAddr;
         certificate.userAddr = _userAddr;
         certificate.uuid = _uuid;
@@ -130,7 +133,7 @@ contract Etherdocs {
     )
         public
         view
-        returns (address, address, string memory, string memory, bool)
+        returns (string memory, address, address, string memory, string memory, bool)
     {
         Certificate storage certificate = certificates[_uuid];
         // only user and issuer can get certificate details
@@ -140,6 +143,7 @@ contract Etherdocs {
             "only user and issuer can get certificate details"
         );
         return (
+            certificate.name,
             certificate.issuerAddr,
             certificate.userAddr,
             certificate.uuid,
@@ -179,7 +183,7 @@ contract Etherdocs {
         return isUser(_addr);
     }
 
-    function isIssuer() private view returns (bool) {
+    function isIssuer() public view returns (bool) {
         address _addr = msg.sender;
         return isIssuer(_addr);
     }
@@ -188,11 +192,7 @@ contract Etherdocs {
         public
         view
         returns (
-            address[] memory,
-            address[] memory,
-            string[] memory,
-            string[] memory,
-            bool[] memory
+            string[] memory
         )
     {
         return getCertificatesIssuedFor(msg.sender);
@@ -201,12 +201,8 @@ contract Etherdocs {
     function getCertificatesIssuedBy()
         public
         view
-        returns (
-            address[] memory,
-            address[] memory,
-            string[] memory,
-            string[] memory,
-            bool[] memory
+        returns ( 
+            string[] memory
         )
     {
         return getCertificatesIssuedBy(msg.sender);
@@ -256,40 +252,34 @@ contract Etherdocs {
         return count;
     }
 
+    function getIssuedForCount(
+    ) public view returns (uint256) {
+        return getIssuedForCount(msg.sender);
+    }
+
     function getCertificatesIssuedFor(
         address _userAddr
     )
         private
         view
-        returns (
-            address[] memory,
-            address[] memory,
-            string[] memory,
-            string[] memory,
-            bool[] memory
+        returns (  
+            string[] memory
         )
     {
         uint256 count = getIssuedForCount(_userAddr);
-        address[] memory ret_issuers = new address[](count);
-        address[] memory ret_users = new address[](count);
         string[] memory ret_uuids = new string[](count);
-        string[] memory ret_ipfsurls = new string[](count);
-        bool[] memory ret_isvalids = new bool[](count);
 
         uint256 index = 0;
 
         for (uint i = 0; i < certificateUUIDs.length; i++) {
             Certificate memory certificate = certificates[certificateUUIDs[i]];
             if (certificate.userAddr == _userAddr) {
-                ret_issuers[index] = certificate.issuerAddr;
-                ret_users[index] = certificate.userAddr;
                 ret_uuids[index] = certificate.uuid;
-                ret_ipfsurls[index] = certificate.ipfsUrl;
-                ret_isvalids[index] = certificate.isValid;
+                index++;
             }
         }
 
-        return (ret_issuers, ret_users, ret_uuids, ret_ipfsurls, ret_isvalids);
+        return (ret_uuids);
     }
 
     function getIssuedByCount(
@@ -305,39 +295,33 @@ contract Etherdocs {
         return count;
     }
 
+    function getIssuedByCount(
+    ) public view returns (uint256) {
+        return getIssuedByCount(msg.sender);
+    }
+
     function getCertificatesIssuedBy(
         address _userAddr
     )
         private
         view
         returns (
-            address[] memory,
-            address[] memory,
-            string[] memory,
-            string[] memory,
-            bool[] memory
+            string[] memory
         )
     {
         uint256 count = getIssuedByCount(_userAddr);
-        address[] memory ret_issuers = new address[](count);
-        address[] memory ret_users = new address[](count);
         string[] memory ret_uuids = new string[](count);
-        string[] memory ret_ipfsurls = new string[](count);
-        bool[] memory ret_isvalids = new bool[](count);
 
         uint256 index = 0;
 
         for (uint i = 0; i < certificateUUIDs.length; i++) {
             Certificate memory certificate = certificates[certificateUUIDs[i]];
             if (certificate.issuerAddr == _userAddr) {
-                ret_issuers[index] = certificate.issuerAddr;
-                ret_users[index] = certificate.userAddr;
                 ret_uuids[index] = certificate.uuid;
-                ret_ipfsurls[index] = certificate.ipfsUrl;
-                ret_isvalids[index] = certificate.isValid;
+                index++;
             }
         }
 
-        return (ret_issuers, ret_users, ret_uuids, ret_ipfsurls, ret_isvalids);
+        return (ret_uuids);
     }
 }
