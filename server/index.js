@@ -1,5 +1,5 @@
 //@ts-check
-import cors from 'cors'
+import cors from "cors";
 // const express = require("express");
 import express from "express";
 import morgan from "morgan";
@@ -20,12 +20,16 @@ import createHttpError from "http-errors";
 import { create } from "ipfs-http-client";
 // const fs = require("fs");
 import fs from "fs";
+import { PDFDocument } from "pdf-lib";
 
 //constants
 
 const PORT = process.env.PORT || 5000;
 const UPLOADS_DIR = path.join(process.cwd(), "uploads");
 const NODE_ENV = process.env.NODE_ENV || "development";
+const APPENDED_DIR = path.join(process.cwd(), "appended");
+const IPFS_GATEWAY_HOST = "127.0.0.1";
+const IPFS_GATEWAY_PROTOCOL = "http";
 
 //utils
 
@@ -49,11 +53,9 @@ function catchAsync(fn) {
     fn(req, res, next).catch(next);
   };
 }
-const ipfs = create({ url: "http://127.0.0.1:5001" });
-// const testFile = fs.readFileSync("./test.pdf");
-// ipfs.add(testFile).then((resp) => {
-//   console.log(resp);
-// });
+const ipfs = create({
+  url: `${IPFS_GATEWAY_PROTOCOL}://${IPFS_GATEWAY_HOST}:5001`,
+});
 
 /**
  * @param {string} filePath
@@ -68,10 +70,50 @@ async function uploadFileToIPFS(filePath) {
   return result.cid.toString();
 }
 
+/**
+ * @param {string} uuidStr
+ * @param {string} pdfInputPath
+ * @param {string} pdfOutputPath
+ */
+async function appendUUIDtoPDF(uuidStr, pdfInputPath, pdfOutputPath) {
+  // Load your existing PDF
+  const pdfBytes = fs.readFileSync(pdfInputPath);
+
+  // Load the PDFDocument
+  const pdfDoc = await PDFDocument.load(pdfBytes);
+
+  // Get the number of pages in the PDF
+  const numPages = pdfDoc.getPageCount();
+
+  // Create a new UUID
+  const uuid = uuidStr;
+
+  // Add the UUID to each page
+  for (let i = 0; i < numPages; i++) {
+    const page = pdfDoc.getPage(i);
+    const { width, height } = page.getSize();
+    const text = `UUID: ${uuid}`;
+    const fontSize = 10;
+
+    // Add the text to the top right corner of the page
+    // const textWidth = page.getFont("Helvetica").widthOfText(text, fontSize);
+    const x = width - 250;
+    const y = height - 20;
+    page.drawText(text, { x, y, size: fontSize });
+  }
+
+  // Save the modified PDF
+  const modifiedPdfBytes = await pdfDoc.save();
+  fs.writeFileSync(pdfOutputPath, modifiedPdfBytes);
+}
+
 //setup
 
 if (!fs.existsSync(UPLOADS_DIR)) {
   fs.mkdirSync(UPLOADS_DIR);
+}
+if (!fs.existsSync(APPENDED_DIR)) {
+  fs.mkdirSync(APPENDED_DIR);
 }
 
 const upload = multer({
@@ -162,13 +204,14 @@ app.post(
       throw new createHttpError.BadRequest("file not found");
     }
     const hash = await sha256(req.file.path);
-    const cid = await uploadFileToIPFS(req.file.path);
-    const id = uuid()
+    const id = uuid();
+    const appendedFilePath = path.join(APPENDED_DIR, id + ".pdf");
+    await appendUUIDtoPDF(id, req.file.path, appendedFilePath);
+    const cid = await uploadFileToIPFS(appendedFilePath);
     return res.json({
       uuid: id,
       hash: hash,
-      cid: cid,
-      ifpsLink: `http://localhost:8080/ipfs/${cid}`,
+      ifpsLink: `${IPFS_GATEWAY_PROTOCOL}://${IPFS_GATEWAY_HOST}:8080/ipfs/${cid}`,
     });
   })
 );
