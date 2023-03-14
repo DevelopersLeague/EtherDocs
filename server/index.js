@@ -28,8 +28,7 @@ const PORT = process.env.PORT || 5000;
 const UPLOADS_DIR = path.join(process.cwd(), "uploads");
 const NODE_ENV = process.env.NODE_ENV || "development";
 const APPENDED_DIR = path.join(process.cwd(), "appended");
-const IPFS_GATEWAY_HOST = "127.0.0.1";
-const IPFS_GATEWAY_PROTOCOL = "http";
+const IPFS_NODE_HOST = "127.0.0.1";
 
 //utils
 
@@ -54,7 +53,9 @@ function catchAsync(fn) {
   };
 }
 const ipfs = create({
-  url: `${IPFS_GATEWAY_PROTOCOL}://${IPFS_GATEWAY_HOST}:5001`,
+  host: IPFS_NODE_HOST,
+  protocol: "http",
+  port: 5001,
 });
 
 /**
@@ -65,7 +66,9 @@ async function uploadFileToIPFS(filePath) {
   const file = fs.readFileSync(filePath);
 
   // Upload the file to IPFS
-  const result = await ipfs.add(file);
+  const result = await ipfs.add(file, {
+    pin: true,
+  });
 
   return result.cid.toString();
 }
@@ -211,7 +214,8 @@ app.post(
     return res.json({
       uuid: id,
       hash: hash,
-      ifpsLink: `${IPFS_GATEWAY_PROTOCOL}://${IPFS_GATEWAY_HOST}:8080/ipfs/${cid}`,
+      ifpsLink: `https://ipfs.io/ipfs/${cid}/?filename=${id}.pdf`,
+      cid: cid,
     });
   })
 );
