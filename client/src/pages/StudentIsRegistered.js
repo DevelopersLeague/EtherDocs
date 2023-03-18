@@ -27,7 +27,7 @@ const StudentIsRegistered = () => {
       const client = getClient();
       let res = await client.getCertificatesIssuedFor();
       console.log(res);
-      setCertificates(res)
+      setCertificates(res);
       setCertiCount(res.length);
     }
     fn();
@@ -49,9 +49,10 @@ const StudentIsRegistered = () => {
           <Table>
             <Thead bg={useColorModeValue("teal.200", "teal.700")}>
               <Tr>
-                <Th w={"20%"}>UUID</Th>
+                <Th w={"15%"}>Name</Th>
+                <Th w={"30%"}>UUID</Th>
                 {/* <Th w="30%">Name </Th> */}
-                <Th w="40%">Issued By </Th>
+                <Th w="40%">Issued By</Th>
                 {/* <Th maxW="12%" isTruncated>
                   Wallet Address
                 </Th> */}
@@ -63,14 +64,15 @@ const StudentIsRegistered = () => {
               opacity={"0.9"}
             >
               {certificates.map((cert) => {
-                console.log(cert)
+                console.log(cert);
                 return (
                   <Tr>
+                    <Td>{cert.name}</Td>
                     <Td>{cert.uuid}</Td>
                     {/* <Td>Sem-6 Marksheet</Td> */}
                     <Td>{cert.issuerAddr}</Td>
                     <Td>
-                      <Link to={cert.ipfsUrl}>{cert.ipfsUrl}</Link>
+                      <Link to={cert.ipfsUrl}>Link</Link>
                     </Td>
                   </Tr>
                 );

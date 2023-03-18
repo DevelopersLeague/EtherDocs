@@ -20,11 +20,11 @@ export const MetamaskProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
   const { setProfile } = useProfile();
 
-  useEffect(() => {
-    if (!window.ethereum) {
-      throw new Error("metamask not installed");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!window.ethereum) {
+  //     throw new Error("metamask not installed");
+  //   }
+  // }, []);
 
   const handleAccountsChanged = useCallback(
     async (accounts) => {
@@ -46,10 +46,12 @@ export const MetamaskProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts",
-      });
-      handleAccountsChanged(accounts);
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+        handleAccountsChanged(accounts);
+      }
     })();
   }, [handleAccountsChanged]);
 
@@ -66,28 +68,35 @@ export const MetamaskProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    window.ethereum.on("accountsChanged", handleAccountsChanged);
-    window.ethereum.on("chainChanged", handleChainChanged);
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", handleAccountsChanged);
+      window.ethereum.on("chainChanged", handleChainChanged);
 
-    return () => {
-      window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
-      window.ethereum.removeListener("chainChanged", handleChainChanged);
-    };
+      return () => {
+        window.ethereum.removeListener(
+          "accountsChanged",
+          handleAccountsChanged
+        );
+        window.ethereum.removeListener("chainChanged", handleChainChanged);
+      };
+    }
   }, [handleAccountsChanged, handleChainChanged]);
 
   const connect = useCallback(async () => {
-    try {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      if (accounts.length === 0) {
-        throw new Error("no accounts found");
-      } else {
-        handleAccountsChanged(accounts);
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        if (accounts.length === 0) {
+          throw new Error("no accounts found");
+        } else {
+          handleAccountsChanged(accounts);
+        }
+      } catch (err) {
+        console.log("error occured while requesting accounts");
+        console.error(err);
       }
-    } catch (err) {
-      console.log("error occured while requesting accounts");
-      console.error(err);
     }
   }, [handleAccountsChanged]);
 

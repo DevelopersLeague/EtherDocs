@@ -88,7 +88,8 @@ const IssuerIsRegistered = () => {
           <Table>
             <Thead bg={useColorModeValue("teal.200", "teal.700")}>
               <Tr>
-                <Th w={"20%"}>UUID</Th>
+                <Th w={"15%"}>Name</Th>
+                <Th w={"30%"}>UUID</Th>
                 {/* <Th w="30%">Name </Th> */}
                 <Th w="40%">Issued By </Th>
                 {/* <Th maxW="12%" isTruncated>
@@ -104,11 +105,12 @@ const IssuerIsRegistered = () => {
               {certificates.map((cert) => {
                 return (
                   <Tr key={cert.uuid}>
+                    <Td>{cert.name}</Td>
                     <Td>{cert.uuid}</Td>
                     {/* <Td>Sem-6 Marksheet</Td> */}
                     <Td>{cert.userAddr}</Td>
                     <Td>
-                      <a href={cert.ipfsUrl}>{cert.ipfsUrl}</a>
+                      <a href={cert.ipfsUrl}>link</a>
                     </Td>
                   </Tr>
                 );

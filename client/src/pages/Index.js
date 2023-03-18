@@ -5,13 +5,13 @@ import EtherDocsClient from "../lib/EtherDocsClient";
 import Etherdocs from "../lib/Etherdocs.json";
 import config from "../config";
 import { getClient, setClient } from "../lib/ClientManager";
-import {useProfile} from '../hooks/useProfile'
+import { useProfile } from "../hooks/useProfile";
 
 const Index = () => {
   const [isMetamaskInstalled] = useState(
     window.ethereum === undefined ? false : true
   );
-  const {setProfile} = useProfile();
+  const { setProfile } = useProfile();
   const { isConnected } = useMetamask();
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Index = () => {
         const profile = await client.getProfile();
         setProfile(profile);
         console.log("profile");
-        console.log(profile)
+        console.log(profile);
         const isRegistered = await client.isRegistered();
         if (isRegistered) {
           navigate("/is-registered");

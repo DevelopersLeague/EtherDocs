@@ -58,18 +58,18 @@ class EtherDocsClient {
   }
 
   /**
-   *
+   * @param {string} name
    * @param {string} userAddr
    * @param {string} uuid
    * @param {string} hashValue
    * @param {string} ipfsUrl
    * @returns
    */
-  async issueCertificate(userAddr, uuid, hashValue, ipfsUrl) {
+  async issueCertificate(name, userAddr, uuid, hashValue, ipfsUrl) {
     try {
       const tx = await this.contract
         .connect(this.signer)
-        .issueCertificate(userAddr, uuid, hashValue, ipfsUrl);
+        .issueCertificate(name, userAddr, uuid, hashValue, ipfsUrl);
       await tx.wait();
       return true;
     } catch (err) {
@@ -104,11 +104,12 @@ class EtherDocsClient {
         .connect(this.signer)
         .getCertificate(uuid);
       return {
-        issuerAddr: result[0],
-        userAddr: result[1],
-        uuid: result[2],
-        ipfsUrl: result[3],
-        isValid: result[4],
+        name: result[0],
+        issuerAddr: result[1],
+        userAddr: result[2],
+        uuid: result[3],
+        ipfsUrl: result[4],
+        isValid: result[5],
       };
     } catch (err) {
       console.error(err);
@@ -138,18 +139,14 @@ class EtherDocsClient {
 
   async getCertificatesIssuedFor() {
     try {
-      const [issuers, users, uuids, ipfsUrls, isValids] = await this.contract
+      const uuids = await this.contract
         .connect(this.signer)
         .getCertificatesIssuedFor();
-      return issuers.map((issuerAddr, index) => {
-        return {
-          issuerAddr,
-          userAddr: users[index],
-          uuid: uuids[index],
-          ipfsUrl: ipfsUrls[index],
-          isValid: isValids[index],
-        };
-      });
+      return Promise.all(
+        uuids.map((uuid) => {
+          return this.getCertificate(uuid);
+        })
+      );
     } catch (err) {
       console.error(err);
       return null;
@@ -158,18 +155,14 @@ class EtherDocsClient {
 
   async getCertificatesIssuedBy() {
     try {
-      const [issuers, users, uuids, ipfsUrls, isValids] = await this.contract
+      const uuids = await this.contract
         .connect(this.signer)
         .getCertificatesIssuedBy();
-      return issuers.map((issuerAddr, index) => {
-        return {
-          issuerAddr,
-          userAddr: users[index],
-          uuid: uuids[index],
-          ipfsUrl: ipfsUrls[index],
-          isValid: isValids[index],
-        };
-      });
+      return Promise.all(
+        uuids.map((uuid) => {
+          return this.getCertificate(uuid);
+        })
+      );
     } catch (err) {
       console.error(err);
       return null;
