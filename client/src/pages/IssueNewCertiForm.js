@@ -23,8 +23,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FileUpload from "../components/FileUpload";
 import { useMetamask } from "../hooks/useMetamask";
-import { getClient } from "../lib/ClientManager";
 import axios from "axios";
+import { useClient } from "../hooks/useClient";
 const IssuerForm = () => {
   const {
     handleSubmit,
@@ -39,6 +39,7 @@ const IssuerForm = () => {
   const [error, setError] = useState("");
   const { isConnected } = useMetamask();
   const navigate = useNavigate();
+  const { client } = useClient();
   async function onSubmit(data) {
     // console.log(inputRef.current.files[0]);
     const formData = new FormData();
@@ -51,7 +52,6 @@ const IssuerForm = () => {
       },
     });
     console.log(response.data);
-    const client = getClient();
     client
       .issueCertificate(
         data.certificate_name,

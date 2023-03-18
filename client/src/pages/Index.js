@@ -4,8 +4,8 @@ import { useMetamask } from "../hooks/useMetamask";
 import EtherDocsClient from "../lib/EtherDocsClient";
 import Etherdocs from "../lib/Etherdocs.json";
 import config from "../config";
-import { getClient, setClient } from "../lib/ClientManager";
 import { useProfile } from "../hooks/useProfile";
+import { useClient } from "../hooks/useClient";
 
 const Index = () => {
   const [isMetamaskInstalled] = useState(
@@ -13,6 +13,9 @@ const Index = () => {
   );
   const { setProfile } = useProfile();
   const { isConnected } = useMetamask();
+  const { client, setClient } = useClient();
+  console.log("client state");
+  console.log(client, setClient);
 
   const navigate = useNavigate();
 

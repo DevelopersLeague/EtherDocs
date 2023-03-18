@@ -5,9 +5,9 @@ import { useCallback } from "react";
 import { useState } from "react";
 import EtherDocsClient from "../lib/EtherDocsClient";
 import Etherdocs from "../lib/Etherdocs.json";
-import { setClient } from "../lib/ClientManager";
 import config from "../config";
 import { useProfile } from "./useProfile";
+import { useClient } from "./useClient";
 
 export const metamaskContext = React.createContext();
 
@@ -19,6 +19,9 @@ export const MetamaskProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const { setProfile } = useProfile();
+  const { client, setClient } = useClient();
+  // const value = useClient();
+  // console.log(value);
 
   // useEffect(() => {
   //   if (!window.ethereum) {

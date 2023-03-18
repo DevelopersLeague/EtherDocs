@@ -22,11 +22,11 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import FileUpload from '../components/FileUpload';
-import { getClient } from '../lib/ClientManager'
 import { useMetamask } from '../hooks/useMetamask';
+import { useClient } from '../hooks/useClient';
 // import { useNavigate } from 'react-router-dom';
 const StudentForm = () => {
-
+    const {client} = useClient()
     const { handleSubmit, register, formState: { isSubmitting, errors } } = useForm({
         mode: "onChange"
     })
@@ -36,7 +36,6 @@ const StudentForm = () => {
 
     async function onSubmit(data) {
         console.log(data);
-        const client = getClient()
         client.registerUser(data.student_name).then(()=>navigate('/'));
         // console.log();
         

@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
@@ -16,9 +15,35 @@ import IssueNewCertiForm from "./pages/IssueNewCertiForm";
 import ConnectWalletPage from "./pages/ConnectWalletPage";
 import Index from "./pages/Index";
 import WarningInstallMetaMask from "./pages/WarningInstallMetaMask";
+import { useProfile } from "./hooks/useProfile";
+import { useClient } from "./hooks/useClient";
+import { useMetamask } from "./hooks/useMetamask";
+import EtherDocsClient from "./lib/EtherDocsClient";
+import Etherdocs from "./lib/Etherdocs.json";
+import config from "./config";
 
 function App() {
-  
+  const [isMetamaskInstalled] = useState(
+    window.ethereum === undefined ? false : true
+  );
+  const { setProfile } = useProfile();
+  const { isConnected } = useMetamask();
+  const { client, setClient } = useClient();
+
+  useEffect(() => {
+    (async () => {
+      if (isMetamaskInstalled) {
+        const client = new EtherDocsClient(
+          Etherdocs.abi,
+          config.contractAddress
+        );
+        setClient(client);
+        const profile = await client.getProfile();
+        setProfile(profile);
+      }
+    })();
+  }, [isConnected, isMetamaskInstalled]);
+
   return (
     <>
       <ChakraProvider>
