@@ -17,6 +17,8 @@ import {
   AlertDescription,
   FormHelperText,
   Textarea,
+  Toast,
+  useToast,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
@@ -39,6 +41,7 @@ const VerifyForm = () => {
   });
   const { isConnected } = useMetamask();
   const inputRef = useRef();
+  const toast = useToast();
   async function onSubmit(data) {
     const formData = new FormData();
 
@@ -64,6 +67,25 @@ const VerifyForm = () => {
       )
       .then((res) => {
         console.log(res);
+        if(res) {
+          toast({
+                title: "Document Is Authentic",
+                variant: 'left-accent',
+                position: 'top-left',
+                duration: 10000,
+                status: "success",
+                isClosable: true,
+              });
+        } else {
+          toast({
+                title: "Document Is Not Authentic",
+                variant: 'left-accent',
+                position: 'top-left',
+                duration: 10000,
+                status: "error",
+                isClosable: true,
+              });
+        }
       })
       .catch((err) => console.log(err));
   }
