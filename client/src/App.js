@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Navbar from "./components/Navbar";
 import RegisteredUserPage from "./pages/RegisteredUserPage";
@@ -13,6 +13,7 @@ import StudentIsRegistered from "./pages/StudentIsRegistered";
 import IssuerIsRegistered from "./pages/IssuerIsRegistered";
 import IssueNewCertiForm from "./pages/IssueNewCertiForm";
 import ConnectWalletPage from "./pages/ConnectWalletPage";
+import CertificatePage from "./pages/CertificatePage";
 import Index from "./pages/Index";
 import WarningInstallMetaMask from "./pages/WarningInstallMetaMask";
 import { useProfile } from "./hooks/useProfile";
@@ -115,6 +116,11 @@ function App() {
               exact
               path="/is-not-registered/issuer"
               element={<IssuerForm />}
+            ></Route>
+            {/* displays certificate details issued to the student */}
+            <Route               
+              path="/certificate/:uuid"
+              element={<CertificatePage />}
             ></Route>
           </Routes>
         </Router>{" "}

@@ -27,7 +27,7 @@ import {
   SkeletonCircle,
   Divider,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Home.module.css";
 import { useClient } from "../hooks/useClient";
 
@@ -35,6 +35,7 @@ const IssuerIsRegistered = () => {
   const { client } = useClient();
   const [certiCount, setCertiCount] = useState(0);
   const [certificates, setCertificates] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fn() {
@@ -93,7 +94,7 @@ const IssuerIsRegistered = () => {
                 <Th w={"15%"}>Name</Th>
                 <Th w={"30%"}>UUID</Th>
                 {/* <Th w="30%">Name </Th> */}
-                <Th w="40%">Issued By </Th>
+                <Th w="40%">Issued To </Th>
                 {/* <Th maxW="12%" isTruncated>
                   Wallet Address
                 </Th> */}
@@ -112,7 +113,7 @@ const IssuerIsRegistered = () => {
                     {/* <Td>Sem-6 Marksheet</Td> */}
                     <Td>{cert.userAddr}</Td>
                     <Td>
-                      <a href={cert.ipfsUrl}>link</a>
+                    <Button onClick={ () => {navigate("/certificate/"+cert.uuid)}}>View Certificate</Button>
                     </Td>
                   </Tr>
                 );

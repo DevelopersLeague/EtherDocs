@@ -14,14 +14,18 @@ import {
   SkeletonCircle,
   Divider,
   useColorModeValue,
+  Button,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import styles from "../styles/Home.module.css";
 import { useClient } from "../hooks/useClient";
+
 const StudentIsRegistered = () => {
   const { client } = useClient();
   const [certiCount, setCertiCount] = useState(3);
   const [certificates, setCertificates] = useState([]);
+  const [viewCertificateUrl, setViewCertificateUrl] = useState([]);
+  const navigate = useNavigate();  
 
   useEffect(() => {
     async function fn() {
@@ -74,7 +78,7 @@ const StudentIsRegistered = () => {
                     {/* <Td>Sem-6 Marksheet</Td> */}
                     <Td>{cert.issuerAddr}</Td>
                     <Td>
-                      <Link to={cert.ipfsUrl}>Link</Link>
+                      <Button onClick={ () => {navigate("/certificate/"+cert.uuid)}}>View Certificate</Button>                    
                     </Td>
                   </Tr>
                 );
