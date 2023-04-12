@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/56788568/231415603-6ba5f1a4-8332-4e4b-8e33-b314fdbb6b71.png" alt="Logo" width="" height="80">
   </a>
 
   <h3 align="center">Etherdocs</h3>
