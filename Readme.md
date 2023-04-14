@@ -89,56 +89,60 @@ The Etherdocs project is needed because the current system of issuing and verify
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Motivation
-
-The existing fundraising platforms suffer from the following problems:
-- Even with legitimate charitable organizations, some of these charities only allocate a small portion of their donations to the actual cause and the remaining goes to corporate sponsors and private operators.
-- Tampering of transactions
-
-**Enter blockchain technology**, an immutable ledger where every record can be traced to its creation. Decentralized and distributed among its users, blockchain allows them to track transactions and be sure of the absence of fraudulent activities.
+## Architecture 
 
 
-**Why only Ethereum Blockchain**
+### Issuer workflow process
 
-- The currency of Ethereum network is Ether which is a well established cryptocurrency. These days there are many new cryptocurrencies Scam Initial Coin Offerings(ICO) are completely fabricated, with fake bios of nonexistent team members and technical whitepapers
-- The community of developers which would help us in bug resolution
+- The below diagram shows the overview of the issuer part of system.
+
+![image](https://user-images.githubusercontent.com/56788568/231941576-ab87de05-b081-42b0-b569-f5e615c6947a.png)
+
+1. Issuer submits raw doc  and user's blockchain address
+2. Send raw document to Node server 
+3. Generation of UUID and QR
+Generate UUID and QR Code, append QR code and UUID to document
+ Calculate hash of document with QR
+4. Upload doc with QR code to IPFS
+5. React receives IPFS link & hash value of doc from Node server
+6. Store hash value, issuer address, user address and IPFS link
+7. React app returns a response: hash value, issuer and user address, IPFS link
+
+### Verifier workflow process
+
+- The below diagram shows the overview of the verifier part of system.
+
+![image](https://user-images.githubusercontent.com/56788568/231941877-eb61e3ad-06c7-4e1c-8652-ae37590accf2.png)
+
+0. The student has sent a digital document with a QR code, UUID, issuer name, user address, and user's name.
+1. Find the authentic address of the issuer.
+2. Enter the document with the QR code, UUID, issuer address, user address, and user name.
+3. Pass the document to the node server.
+4. Compute the hash value of the document entered by the verifier.
+5. Return the hash value.
+6. Send the UUID, hash value, issuer address, user address, and user name to the blockchain for verification.
+7. Execute the smart contract for verification by matching the UUID associated with the user's address and name and the hash with the verifier-provided details.
+8. Return the result of verification to the React App.
+9. Return the verification result to the verifier.
+
+### Use-case diagrams
+
+- The below are use-case diagrams of Issuer, Verifier and User(Student)
+
+![image](https://user-images.githubusercontent.com/56788568/231942409-48843d21-7ffe-436b-91b2-350b8588f00b.png)
+
+![image](https://user-images.githubusercontent.com/56788568/231942481-18024564-9c8a-4de5-81c1-3bf7f18d2cf3.png)
+
+![image](https://user-images.githubusercontent.com/56788568/231942572-55d21117-059a-4aa0-b506-4cd6f67ce25d.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Corner-cases
 
-**What if owner of fund is not a legitimte person and uses the fund for his own benefits after withdrawal?**
+**What if there is a human error while issuing certificate, what happens then?**
 - A safety and trust team could be created to verify personal information, the identity of recipients, and they make sure that all funds raised on Etherfunds are going to the right place. They work closely with state and local officials and law enforcement to assist in any investigations.
 - The goal is to automate the process with least human interactions therby eliminating any chances of malpractice during transaction and establishing a P2P network
 
-**What if owner is a NGO and then they distribute money to management as well as to the cause, but they majorly used their funds for management, can you do something about it?**
-- same as above
-- Or we can have seperate privacy policies or terms of usage for such cases
-
-<br />
-
-## Architecture 
-
-We tried to follow ideal Software Development Design Principles such as.
-- Do not repeat yourself (DRY)
-- Keep it short and simple (KISS)
-- You Ain’t Gonna Need It (YAGNI)
-
-<br />
-
-The presentation for Etherfunds can be found [here](https://www.canva.com/design/DAE3pEWUc1Y/Lrnk-dxztwBzIL4UkxrQvg/view#1).
-
-### Block diagram
-
-- The block diagram shows the overview of the system.
-<br />
-<img src="./docs/block_digram_svg.svg" />
-<br />
-
-### E-R diagram
-
-- ER diagram shows the databases involved
-
-<br />
-<img src="./docs/er_diagram.svg" width="90%"/>
 <br />
 
 
