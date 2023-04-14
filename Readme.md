@@ -79,10 +79,15 @@ The solution proposed by Etherdocs revolves around three roles or entities: **an
 
 ## Features
 
-- **Immutable transactions:** Blockchain being an immutable ledger will not allow any room for tampering
-- **On-time donations:** Normally it might even take many months upto years for gathering of funds and deliverun to the needy people due to the tedious and manual nature of existing systems, but Blockchain technology ensures that the transactions will not take a long time to transfer funds to deprived people
-- **Eliminating middlemen:** Blockchain eliminates the need for a middleman due to Peer-to-Peer transactions. With large, centralized charities, there is always the possibility that too many levels of management will eat into their funds. With blockchain-based charities, the number of middlemen between donors and those they want to help is brought to a minimum
-- **Clear and concise UI:** The front-end is built with minimalistic Chakra UI components. Since users are generally cautious when it comes to transactions, the application provides descriptive steps through toastcards, alerts, etc.
+- **Security:** By using blockchain, IPFS, and hash functions, Etherdocs provides a highly secure platform for storing and verifying academic documents. The blockchain is tamper-proof and immutable, ensuring that the data stored on it cannot be modified or deleted. The use of hash functions ensures that any modification to the document will be detected, making it difficult for counterfeit certificates to be created.
+- **Efficiency:** Etherdocs streamlines the process of verifying academic documents, saving time and resources for all parties involved. Verifiers can easily access the certificates and compare the hash values, eliminating the need for manual verification.
+- **Accessibility:** Etherdocs makes it easy for students to access and share their academic documents. The use of IPFS allows for quick and easy access to the documents, while the UUID ensures that the documents are easily identifiable and verifiable.
+- **Transparency:** The use of blockchain ensures transparency and accountability in the issuance and verification of academic documents. All data related to the certificate and the IPFS link are stored on the blockchain, providing a transparent and auditable record of the entire process.
+- **Universality:** Etherdocs can be used by any educational institution, making it a universal solution for ensuring the authenticity of academic documents. The platform can also be used by potential employers, government agencies, or any organization that needs to verify the authenticity of academic documents.
+
+The Etherdocs project is needed because the current system of issuing and verifying academic documents is prone to fraud and counterfeiting. Without an efficient anti-forgery mechanism, it is difficult to ensure the authenticity of academic documents, leading to wasted time and resources for all parties involved. Etherdocs provides a secure, efficient, and transparent solution for verifying academic documents, ensuring that the information on the certificate is accurate and trustworthy.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Motivation
 
