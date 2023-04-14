@@ -206,10 +206,11 @@ app.post(
     if (!req.file) {
       throw new createHttpError.BadRequest("file not found");
     }
-    const hash = await sha256(req.file.path);
+    // const hash = await sha256(req.file.path);
     const id = uuid();
     const appendedFilePath = path.join(APPENDED_DIR, id + ".pdf");
     await appendUUIDtoPDF(id, req.file.path, appendedFilePath);
+    const hash = await sha256(appendedFilePath)
     const cid = await uploadFileToIPFS(appendedFilePath);
     return res.json({
       uuid: id,

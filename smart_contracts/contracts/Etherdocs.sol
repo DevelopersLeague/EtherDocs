@@ -137,11 +137,13 @@ contract Etherdocs {
     {
         Certificate storage certificate = certificates[_uuid];
         // only user and issuer can get certificate details
+        /*
         require(
             msg.sender == certificate.issuerAddr ||
                 msg.sender == certificate.userAddr,
             "only user and issuer can get certificate details"
         );
+        */
         return (
             certificate.name,
             certificate.issuerAddr,

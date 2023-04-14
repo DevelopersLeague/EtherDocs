@@ -67,24 +67,24 @@ const VerifyForm = () => {
       )
       .then((res) => {
         console.log(res);
-        if(res) {
+        if (res) {
           toast({
-                title: "Document Is Authentic",
-                variant: 'left-accent',
-                position: 'top-left',
-                duration: 10000,
-                status: "success",
-                isClosable: true,
-              });
+            title: "Document Is Authentic",
+            variant: "left-accent",
+            position: "bottom-right",
+            duration: 10000,
+            status: "success",
+            isClosable: true,
+          });
         } else {
           toast({
-                title: "Document Is Not Authentic",
-                variant: 'left-accent',
-                position: 'top-left',
-                duration: 10000,
-                status: "error",
-                isClosable: true,
-              });
+            title: "Document Is Not Authentic",
+            variant: "left-accent",
+            position: "bottom-right",
+            duration: 10000,
+            status: "error",
+            isClosable: true,
+          });
         }
       })
       .catch((err) => console.log(err));
