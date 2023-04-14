@@ -82,6 +82,26 @@ contract Etherdocs {
         }
     }
 
+    function getProfileByAddress(address _address)
+        public
+        view
+        returns (address, string memory, string memory)
+    {
+        address addr = _address;
+        if (!isRegistered(addr)) {
+            return (addr, "NA", "NA");
+        }
+        if (isUser(addr)) {
+            User memory user = users[addr];
+            return (user.addr, user.name, "User");
+        } else if (isIssuer(addr)) {
+            Issuer memory issuer = issuers[addr];
+            return (issuer.addr, issuer.name, "Issuer");
+        } else {
+            revert("invalid role");
+        }
+    }
+
     function issueCertificate(
         string memory _name,
         address _userAddr,

@@ -24,6 +24,14 @@ class EtherDocsClient {
       role: res[2],
     };
   }
+  async getProfileByAddress(address) {
+    const res = await this.contract.connect(this.signer).getProfileByAddress(address);
+    return {
+      address: res[0],
+      name: res[1],
+      role: res[2],
+    };
+  }
 
   /**
    * @param {string} name

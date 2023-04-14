@@ -38,21 +38,21 @@ const CertificatePage = () => {
         setCertificate(res);
     }
 
-    const getProfile = async(addressOfProfile) => {
-        return {
-            address: "aa",
-            name: "Chirag",
-            role: "User"
-        };
-    }
+    // const getProfile = async(addressOfProfile) => {
+    //     return {
+    //         address: "aa",
+    //         name: "Chirag",
+    //         role: "User"
+    //     };
+    // }
     
   useEffect(() => {
     if (client && params.uuid) {
         async function fn() {            
             setIsLoading(true);                        
             let res = await client.getCertificate(params.uuid);
-            let userProfileRes = await getProfile(res.userAddr);
-            let issuerProfileRes = await getProfile(res.issuerAddr);
+            let userProfileRes = await client.getProfileByAddress(res.userAddr);
+            let issuerProfileRes = await client.getProfileByAddress(res.issuerAddr);
             setUserProfile(userProfileRes);
             setIssuerProfile(issuerProfileRes);
             setCertificate(res);
