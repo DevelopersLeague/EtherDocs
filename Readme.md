@@ -29,25 +29,19 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#about-the-project">About the project</a></li>
+    <li><a href="#features">Features</a></li>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#architecture">Architecture</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#issuer-workflow-process">Issuer workflow process</a></li>
+        <li><a href="#verifier-workflow-process">Verifier workflow process</a></li>
+        <li><a href="#use-case-diagrams">Use-case diagrams</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#technologies-used">Technologies used</a></li>
+    <li><a href="#local-setup">Local Setup</a></li>
+    <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
 
