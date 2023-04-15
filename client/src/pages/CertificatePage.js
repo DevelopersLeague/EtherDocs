@@ -69,7 +69,7 @@ const CertificatePage = () => {
           <SkeletonCircle size="4" />          
             {!isLoading ? 
             <Heading as="h4" size="lg" textAlign="left" ml="-2">
-                Certificate {certificate.name} For Chirag By TSEC
+                          Certificate {certificate.name} for {userProfile.name} By {issuerProfile.name}
                 </Heading>
                  : 
                 <Heading as="h4" size="lg" textAlign="left" ml="-2">Certificate Page</Heading>
