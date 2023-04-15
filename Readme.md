@@ -4,7 +4,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/DevelopersLeague/EtherDocs/blob/main/Readme.md">
     <img src="https://user-images.githubusercontent.com/56788568/231415603-6ba5f1a4-8332-4e4b-8e33-b314fdbb6b71.png" alt="Logo" width="" height="80">
   </a>
 
@@ -12,7 +12,7 @@
   <p align="center">
     A Student Document Management System based on Ethereum Blockchain
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/DevelopersLeague/EtherDocs/blob/main/Readme.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"> Demo </a>
@@ -52,10 +52,7 @@
 
 <p align="center">
 
-
-
-https://user-images.githubusercontent.com/56788568/231788183-82c27094-03e5-41fb-978c-b225dc37c579.mp4
-
+https://user-images.githubusercontent.com/56788568/232223495-d0c7da58-ea1d-4f77-8bb3-e5e57135daa3.mp4
 
 </p> 
 
@@ -159,23 +156,22 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 
 ## Local-Setup
 
-1. clone the project to your local environment
-2. make sure you have node.js version ^14.19.0
-3. make sure you have npm version ^8.5.5
-4. run `$ npm install` to install dependencies for react app
-5. run `$ cp .env.example .env.development.local`
-6. run `$ cd src/backend` to cd into the backend directorry
-7. run `$ npm install` to install dependencies for the backend
-8. open two terminals in one terminal run `$ npx hardhat node` to start a local blockchain
-9. in second terminal run `$ npx hardhat run --network localhost scripts/deploy_etherfund.js` to deploy the smart contract and copy the address printed in the terminal
-10. open the `.env.development.local` file from project root and set the variable `REACT_APP_CONTRACT_ADDRESS` to the address copied above
-11. run `$ cd ../..` to go back to the project root and run `$ npm start` to start the react project
-12. Now in your React-app, enter password in your metamask wallet or any other blockchain wallet
-13. Switch to TestNetwork or add one preferably having `RPC URL` as ```http://localhost:8545``` with chain-id of 31337
-14. Create dummy accounts, you can find the private keys of dummy accounts in the terminal where ``npx hardhat node`` was ran
-15. You may see an error in browser console of ``call revert exception``, in that case, kindly reset your account and refresh the page
+1. Clone the project to your local environment by using ```git clone``` command
+2. Make sure you have node.js version ^14.19.0
+3. Make sure you have npm version ^8.5.5
+4. Open terminal run `$ cd client && npm install` to install dependencies for client folder
+5. Open another run `$ cd smart_contracts && npm install` to install dependencies for smart_contracts folder
+6. Open seperate terminal and run `$ cd server && npm install` to install dependencies for smart_contracts folder
+7. Come back to the terminal where you ran step 4, and run the command `npm start`, this will automatically open `http://localhost:3000/` on your browser
+8. Come back to the terminal where you ran step 5, and run the cmd `npx hardhat run scripts/deploy.js --network localhost`, this will give you an `address`, copy it.
+9. Now in `client` folder, create a new file `.env.local` and the content will be `REACT_APP_CONTRACT_ADDRESS=address_you_copied`
+10. In the same terminal(step 9) run `npx hardhat node`, this will list a bunch of dummy account numbers with their private keys
+11. come back to the terminal where you ran step 6, and run the command `npm run dev`
+12. Switch to TestNetwork or add one preferably having `RPC URL` as ```http://localhost:8545``` with chain-id of 31337
+13. Import dummy accounts into your wallet, you can find the private keys of dummy accounts in the terminal where ``npx hardhat node`` was ran
+15. You may see an error in browser console of ``call revert exception``, in that case, kindly `reset your account` or `clear data logs` and refresh the page
 16. You can use the site, congrats 🎉
-17. In case of any other errors, kindly create an [issue here](https://github.com/DevelopersLeague/Etherfunds/issues/new)
+17. In case of any other errors, kindly create an [issue here](https://github.com/DevelopersLeague/EtherDocs/issues)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
