@@ -15,7 +15,7 @@
     <a href="https://github.com/DevelopersLeague/EtherDocs/blob/main/Readme.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"> Demo </a>
+    <a href="https://youtu.be/B_44aJ9hh6U" target="_blank"> Demo </a>
     ·
     <a href="https://docs.google.com/document/d/1sppiQj26EkYNXkIXrftMLM5NyRNs-Max/edit?usp=sharing&ouid=115366311442097501535&rtpof=true&sd=true"> Project Report </a>
     ·
