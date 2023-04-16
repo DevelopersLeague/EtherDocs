@@ -52,7 +52,9 @@
 
 <p align="center">
 
-https://user-images.githubusercontent.com/56788568/232223495-d0c7da58-ea1d-4f77-8bb3-e5e57135daa3.mp4
+
+https://user-images.githubusercontent.com/56788568/232264163-0fda63cf-b204-43a2-ac7e-ab7e82a53ad8.mp4
+
 
 </p> 
 
@@ -156,6 +158,7 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 
 ## Local-Setup
 
+0. Open IPFS Desktop application
 1. Clone the project to your local environment by using ```git clone``` command
 2. Make sure you have node.js version ^14.19.0
 3. Make sure you have npm version ^8.5.5
