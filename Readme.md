@@ -17,9 +17,6 @@
     <br />
     <a href="https://youtu.be/B_44aJ9hh6U" target="_blank"> Demo </a>
     ·
-    <a href="https://docs.google.com/document/d/1sppiQj26EkYNXkIXrftMLM5NyRNs-Max/edit?usp=sharing&ouid=115366311442097501535&rtpof=true&sd=true"> Project Report </a>
-    ·
-    <a href="https://docs.google.com/presentation/d/1nivByAA7K9lYjc4rBcU_hRLC60PjHlErP0Kn1kY2ooQ/edit?usp=sharing">Slide deck</a>
   </p>
 </div>
 
@@ -186,7 +183,7 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 
 **Project Guide**
 
-- Prof. Tasneem Mirza
+- Dr. Tasneem Mirza
   - [LinkedIn](https://www.linkedin.com/in/tasneem-mirza-91513338/) • [Mail](mailto:tmm1207@gmail.com)
 
 **Developers**
