@@ -43,6 +43,10 @@
   </ol>
 </details>
 
+## Contact
+
+- Do you want **project report and slides** along with the **local setup**? then contact [here](https://www.linkedin.com/in/shyrenmore/)
+- Don't forget to star ⭐ the repo
 
 
 <!-- ABOUT THE PROJECT -->
@@ -199,8 +203,3 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
     - [LinkedIn](https://www.linkedin.com/in/shubhankarmote/) • [Mail](mailto:shubhu.mote@gmail.com)
     
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Contact
-
-- For getting the **project report and slides** for the project, or for **setting up the project** contact [here](https://www.linkedin.com/in/shyrenmore/)
-- Don't forget to star ⭐ the repo
