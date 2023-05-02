@@ -16,7 +16,7 @@
     <br />
     <br />
     <a href="https://youtu.be/B_44aJ9hh6U" target="_blank"> Demo </a>
-    ·
+    
   </p>
 </div>
 
@@ -39,6 +39,7 @@
     <li><a href="#technologies-used">Technologies used</a></li>
     <li><a href="#local-setup">Local Setup</a></li>
     <li><a href="#authors">Authors</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
@@ -198,3 +199,8 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
     - [LinkedIn](https://www.linkedin.com/in/shubhankarmote/) • [Mail](mailto:shubhu.mote@gmail.com)
     
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contact
+
+- For getting the **project report and slides** for the project, or for **setting up the project** contact [here](https://www.linkedin.com/in/shyrenmore/)
+- Don't forget to star ⭐ the repo
