@@ -174,9 +174,8 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 11. come back to the terminal where you ran step 6, and run the command `npm run dev`
 12. Switch to TestNetwork or add one preferably having `RPC URL` as ```http://localhost:8545``` with chain-id of 31337
 13. Import dummy accounts into your wallet, you can find the private keys of dummy accounts in the terminal where ``npx hardhat node`` was ran
-15. You may see an error in browser console of ``call revert exception``, in that case, kindly `reset your account` or `clear data logs` and refresh the page
-16. You can use the site, congrats 🎉
-17. In case of any other errors, kindly create an [issue here](https://github.com/DevelopersLeague/EtherDocs/issues)
+14. You can use the site, congrats 🎉
+15. In case of any other errors, kindly create an [issue here](https://github.com/DevelopersLeague/EtherDocs/issues) or contact [here](https://www.linkedin.com/in/shyrenmore/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
