@@ -158,42 +158,6 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Local-Setup
-
-0. Open IPFS Desktop application
-
-1. Clone the project to your local environment by using ```git clone``` command
-
-2. Make sure you have node.js version ^14.19.0
-
-3. Make sure you have npm version ^8.5.5
-
-4. Open terminal run `$ cd client && npm install` to install dependencies for client folder
-
-5. Open another run `$ cd smart_contracts && npm install` to install dependencies for smart_contracts folder
-
-6. Open seperate terminal and run `$ cd server && npm install` to install dependencies for smart_contracts folder
-
-7. Come back to the terminal where you ran step 4, and run the command `npm start`, this will automatically open `http://localhost:3000/` on your browser
-
-8. Come back to the terminal where you ran step 5, and run the cmd `npx hardhat run scripts/deploy.js --network localhost`, this will give you an `address`, copy it.
-
-9. Now in `client` folder, create a new file `.env.local` and the content will be `REACT_APP_CONTRACT_ADDRESS=address_you_copied`
-
-10. In the same terminal(step 9) run `npx hardhat node`, this will list a bunch of dummy account numbers with their private keys
-
-11. come back to the terminal where you ran step 6, and run the command `npm run dev`
-
-12. Switch to TestNetwork or add one preferably having `RPC URL` as ```http://localhost:8545``` with chain-id of 31337
-
-13. Import dummy accounts into your wallet, you can find the private keys of dummy accounts in the terminal where ``npx hardhat node`` was ran
-
-14. You can use the site, congrats 🎉
-
-15. In case of any other errors, kindly create an [issue here](https://github.com/DevelopersLeague/EtherDocs/issues) or contact [here](https://www.linkedin.com/in/shyrenmore/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> 
-
 
 ## License 📜
 
