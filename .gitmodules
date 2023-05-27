@@ -1,0 +1,3 @@
+[submodule "smart_contracts"]
+	path = smart_contracts
+	url = https://github.com/ShyrenMore/etherdocs_smart_contracts
