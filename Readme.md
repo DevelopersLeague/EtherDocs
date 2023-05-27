@@ -16,10 +16,7 @@
     <br />
     <br />
     <a href="https://youtu.be/B_44aJ9hh6U" target="_blank"> Demo </a>
-    ·
-    <a href="https://docs.google.com/document/d/1sppiQj26EkYNXkIXrftMLM5NyRNs-Max/edit?usp=sharing&ouid=115366311442097501535&rtpof=true&sd=true"> Project Report </a>
-    ·
-    <a href="https://docs.google.com/presentation/d/1nivByAA7K9lYjc4rBcU_hRLC60PjHlErP0Kn1kY2ooQ/edit?usp=sharing">Slide deck</a>
+    
   </p>
 </div>
 
@@ -42,9 +39,14 @@
     <li><a href="#technologies-used">Technologies used</a></li>
     <li><a href="#local-setup">Local Setup</a></li>
     <li><a href="#authors">Authors</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
+## Contact
+
+- Do you want **project report and slides** along with the **local setup**? then contact [here](https://www.linkedin.com/in/shyrenmore/)
+- Don't forget to star ⭐ the repo
 
 
 <!-- ABOUT THE PROJECT -->
@@ -156,27 +158,6 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Local-Setup
-
-0. Open IPFS Desktop application
-1. Clone the project to your local environment by using ```git clone``` command
-2. Make sure you have node.js version ^14.19.0
-3. Make sure you have npm version ^8.5.5
-4. Open terminal run `$ cd client && npm install` to install dependencies for client folder
-5. Open another run `$ cd smart_contracts && npm install` to install dependencies for smart_contracts folder
-6. Open seperate terminal and run `$ cd server && npm install` to install dependencies for smart_contracts folder
-7. Come back to the terminal where you ran step 4, and run the command `npm start`, this will automatically open `http://localhost:3000/` on your browser
-8. Come back to the terminal where you ran step 5, and run the cmd `npx hardhat run scripts/deploy.js --network localhost`, this will give you an `address`, copy it.
-9. Now in `client` folder, create a new file `.env.local` and the content will be `REACT_APP_CONTRACT_ADDRESS=address_you_copied`
-10. In the same terminal(step 9) run `npx hardhat node`, this will list a bunch of dummy account numbers with their private keys
-11. come back to the terminal where you ran step 6, and run the command `npm run dev`
-12. Switch to TestNetwork or add one preferably having `RPC URL` as ```http://localhost:8545``` with chain-id of 31337
-13. Import dummy accounts into your wallet, you can find the private keys of dummy accounts in the terminal where ``npx hardhat node`` was ran
-15. You may see an error in browser console of ``call revert exception``, in that case, kindly `reset your account` or `clear data logs` and refresh the page
-16. You can use the site, congrats 🎉
-17. In case of any other errors, kindly create an [issue here](https://github.com/DevelopersLeague/EtherDocs/issues)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
 ## License 📜
 
@@ -186,7 +167,7 @@ By providing a mechanism for revoking certificates, the Etherdocs system ensures
 
 **Project Guide**
 
-- Prof. Tasneem Mirza
+- Dr. Tasneem Mirza
   - [LinkedIn](https://www.linkedin.com/in/tasneem-mirza-91513338/) • [Mail](mailto:tmm1207@gmail.com)
 
 **Developers**
