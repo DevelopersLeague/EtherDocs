@@ -45,7 +45,7 @@
 
 ## Contact
 
-- Do you want **project report and slides** along with the **local setup**? then contact [here](https://www.linkedin.com/in/shyrenmore/)
+- Do you want **project report and slides** along with the **local setup**? then contact either on [LinkedIn](https://www.linkedin.com/in/shyrenmore/) or [Telegram](https://telegram.me/ShyrenMore)
 - Don't forget to star ⭐ the repo
 
 
