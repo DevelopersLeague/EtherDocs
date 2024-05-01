@@ -43,6 +43,11 @@
   </ol>
 </details>
 
+## Contact
+
+- Do you want **project report and slides** along with the **local setup**? then contact on [Telegram](https://telegram.me/ShyrenMore)
+- Don't forget to star ⭐ the repo
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
