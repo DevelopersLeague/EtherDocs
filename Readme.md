@@ -45,7 +45,7 @@
 
 ## Contact
 
-- For help with local setup contact any of us on LinkedIn: [Aniket More](https://www.linkedin.com/in/aniket-more-2b97571b1), [Chirag Mahajan](https://www.linkedin.com/in/chirag-mahajan-b09144137), [Shubhankar Mote](https://www.linkedin.com/in/shubhankarmote/), [Shyren More](https://www.linkedin.com/in/shyrenmore/)
+- For help with local setup contact on [Telegram](https://telegram.me/ShyrenMore)
 - Don't forget to star ⭐ the repo
 
 <!-- ABOUT THE PROJECT -->
