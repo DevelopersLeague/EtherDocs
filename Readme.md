@@ -45,7 +45,7 @@
 
 ## Contact
 
-- For help with local setup contact on [Telegram](https://telegram.me/ShyrenMore) or [LinkedIn](https://www.linkedin.com/in/shyrenmore/)
+- For help with local setup contact on [Telegram](https://telegram.me/ShyrenMore)
 - Don't forget to star ⭐ the repo
 
 <!-- ABOUT THE PROJECT -->
