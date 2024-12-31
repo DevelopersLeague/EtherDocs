@@ -1,15 +1,20 @@
 //@ts-check
-import { providers, Contract } from "ethers";
+import { BrowserProvider ,Contract } from "ethers";
 
 class EtherDocsClient {
-  constructor(abi, address) {
+  constructor() {
     //@ts-expect-error
-    this.provider = new providers.Web3Provider(window.ethereum);
+    this.provider = new BrowserProvider(window.ethereum);
 
     // Get the user's account
-    this.signer = this.provider.getSigner();
+    this.signer = null
+    this.contract = null
 
-    this.contract = new Contract(address, abi, this.signer);
+  }
+
+  async setup(abi, address){
+    this.signer = await this.provider.getSigner()
+    this.contract = new Contract(address, abi, this.signer)
   }
 
   async isRegistered() {

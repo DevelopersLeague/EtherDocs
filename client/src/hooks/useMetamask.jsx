@@ -35,9 +35,11 @@ export const MetamaskProvider = ({ children }) => {
         console.log("metamask not connected");
       } else {
         const client = new EtherDocsClient(
+        );
+        await client.setup(
           Etherdocs.abi,
           config.contractAddress
-        );
+        )
         setClient(client);
         const profileRet = await client.getProfile();
         setProfile(profileRet);

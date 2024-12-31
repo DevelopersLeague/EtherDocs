@@ -35,9 +35,11 @@ function App() {
     (async () => {
       if (isMetamaskInstalled) {
         const client = new EtherDocsClient(
+        );
+        await client.setup(
           Etherdocs.abi,
           config.contractAddress
-        );
+        )
         setClient(client);
         const profile = await client.getProfile();
         setProfile(profile);
@@ -118,7 +120,7 @@ function App() {
               element={<IssuerForm />}
             ></Route>
             {/* displays certificate details issued to the student */}
-            <Route               
+            <Route
               path="/certificate/:uuid"
               element={<CertificatePage />}
             ></Route>

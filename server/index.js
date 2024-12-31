@@ -28,7 +28,8 @@ const PORT = process.env.PORT || 5000;
 const UPLOADS_DIR = path.join(process.cwd(), "uploads");
 const NODE_ENV = process.env.NODE_ENV || "development";
 const APPENDED_DIR = path.join(process.cwd(), "appended");
-const IPFS_NODE_HOST = "127.0.0.1";
+// const IPFS_NODE_HOST = "127.0.0.1";
+const IPFS_NODE_HOST = "host.docker.internal"
 
 //utils
 

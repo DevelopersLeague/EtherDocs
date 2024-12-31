@@ -24,10 +24,11 @@ const Index = () => {
       if (!isMetamaskInstalled) {
         navigate("/install-metamask");
       } else if (isConnected) {
-        const client = new EtherDocsClient(
+        const client = new EtherDocsClient();
+        await client.setup(
           Etherdocs.abi,
           config.contractAddress
-        );
+        )
         setClient(client);
         const profile = await client.getProfile();
         setProfile(profile);
