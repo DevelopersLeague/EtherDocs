@@ -1,0 +1,12 @@
+how to setup etherdocs
+
+requirements
+- metamask extension
+- ipfs companion extension
+- ipfs desktop
+- docker
+
+1. in all the folders "server", "client" and "smart_contracts" there are build.sh and run.sh scripts run them in that order
+2. add the local chain with rpc url http://127.0.0.1:8545/ to metamask
+3. get the logs of the etherdocs-chain container and use the private keys to add accounts to the metamask wallet
+4. make sure to clear account data before every new session
