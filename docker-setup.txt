@@ -6,7 +6,13 @@ requirements
 - ipfs desktop
 - docker
 
-1. in all the folders "server", "client" and "smart_contracts" there are build.sh and run.sh scripts run them in that order
-2. add the local chain with rpc url http://127.0.0.1:8545/ to metamask
-3. get the logs of the etherdocs-chain container and use the private keys to add accounts to the metamask wallet
-4. make sure to clear account data before every new session
+
+steps
+
+- cd into the client folder and execute the build.sh script with "bash build.sh"
+- start ipfs desktop application
+- add the local chain with rpc url http://127.0.0.1:8545/ and chainid 31337 to metamask and reset account data
+- run "docker-compose up" in the project root folder
+- get the logs of the etherdocs-chain container and use the private keys to add accounts to the metamask wallet
+- make sure to clear account data before every new session
+- visit http://localhost:3000/

@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    container_name: etherdocs-client
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - "5000:5000"
+    container_name: etherdocs-server
+
+  chain:
+    build:
+      context: ./smart_contracts
+    ports:
+      - "8545:8545"
+    container_name: etherdocs-chain
